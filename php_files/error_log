@@ -1,0 +1,81 @@
+[25-May-2020 03:19:39 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'jbclare'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:20:05 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'jbclare'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:20:48 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'jbclare'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:25:48 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'jbclare'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:31:45 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'bhicxumy_jbclare'@'localhost' to database 'bhicxumy_tester' in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:33:31 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1044): Access denied for user 'bhicxumy_jbclare'@'localhost' to database 'bhicxumy_tester' in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:37:23 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'bhicxumy_WPM1N'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[25-May-2020 03:42:39 America/Boise] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'bhicxumy_WPM1N'@'localhost' (using password: YES) in /home3/bhicxumy/public_html/lsl/register.php on line 13
+[05-Oct-2020 10:14:39 America/Boise] PHP Parse error:  syntax error, unexpected 'name' (T_STRING) in /home3/bhicxumy/public_html/lsl/atm.php on line 29
+[21-Oct-2020 19:32:15 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 46
+[21-Oct-2020 19:34:10 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 42
+[21-Oct-2020 19:34:41 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:35:47 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:36:03 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:37:55 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:38:18 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:38:32 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 43
+[21-Oct-2020 19:39:09 America/Boise] PHP Parse error:  syntax error, unexpected '$avatar_id' (T_VARIABLE) in /home3/bhicxumy/public_html/lsl/stand.php on line 42
+[23-Oct-2020 09:53:18 America/Boise] PHP Parse error:  syntax error, unexpected end of file in /home3/bhicxumy/public_html/lsl/stand.php on line 32
+[23-Oct-2020 09:53:25 America/Boise] PHP Parse error:  syntax error, unexpected end of file in /home3/bhicxumy/public_html/lsl/stand.php on line 32
+[23-Oct-2020 09:54:51 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 09:55:03 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 09:58:24 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 09:59:07 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 10:00:25 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 10:02:11 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[23-Oct-2020 10:04:13 America/Boise] PHP Parse error:  syntax error, unexpected '"You have been added to the da' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home3/bhicxumy/public_html/lsl/stand.php on line 37
+[23-Oct-2020 10:04:22 America/Boise] PHP Parse error:  syntax error, unexpected '"You have been added to the da' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home3/bhicxumy/public_html/lsl/stand.php on line 37
+[23-Oct-2020 10:05:06 America/Boise] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home3/bhicxumy/public_html/lsl/stand.php on line 25
+[01-Oct-2021 08:10:58 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:12:07 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:12:25 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:13:27 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:14:35 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:16:00 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:16:17 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:17:39 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:23:15 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 08:23:50 America/Boise] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN), expecting ',' or ';' in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 4
+[01-Oct-2021 08:24:23 America/Boise] PHP Parse error:  syntax error, unexpected 'exit' (T_EXIT), expecting ',' or ';' in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 4
+[01-Oct-2021 08:24:25 America/Boise] PHP Parse error:  syntax error, unexpected 'exit' (T_EXIT), expecting ',' or ';' in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 4
+[01-Oct-2021 08:25:14 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 8
+[01-Oct-2021 08:26:05 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 10
+[01-Oct-2021 08:26:07 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 10
+[01-Oct-2021 08:28:11 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 22
+[01-Oct-2021 08:28:15 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 22
+[01-Oct-2021 09:26:08 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 23
+[01-Oct-2021 09:26:11 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 23
+[01-Oct-2021 09:26:36 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 25
+[01-Oct-2021 09:26:38 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 25
+[01-Oct-2021 09:26:54 America/Boise] PHP Parse error:  syntax error, unexpected ';' in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 3
+[01-Oct-2021 09:27:16 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 26
+[01-Oct-2021 09:27:38 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:28:25 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:31:01 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:31:16 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:32:49 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:33:17 America/Boise] PHP Parse error:  syntax error, unexpected 'GetParam' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 28
+[01-Oct-2021 09:34:00 America/Boise] PHP Parse error:  syntax error, unexpected 'resp' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 29
+[01-Oct-2021 09:34:19 America/Boise] PHP Parse error:  syntax error, unexpected 'resp' (T_STRING) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 29
+[01-Oct-2021 09:37:48 America/Boise] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 09:38:57 America/Boise] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 09:39:00 America/Boise] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 09:40:05 America/Boise] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 7
+[01-Oct-2021 09:40:50 America/Boise] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 32
+[01-Oct-2021 09:40:52 America/Boise] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 32
+[01-Oct-2021 09:46:22 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=?' at line 1 in /home3/bhicxumy/public_html/lsl/register_CRU.php:23
+Stack trace:
+#0 /home3/bhicxumy/public_html/lsl/register_CRU.php(23): mysqli->prepare('SELECT * FROM r...')
+#1 {main}
+  thrown in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 23
+[01-Oct-2021 09:46:44 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=?' at line 1 in /home3/bhicxumy/public_html/lsl/register_CRU.php:23
+Stack trace:
+#0 /home3/bhicxumy/public_html/lsl/register_CRU.php(23): mysqli->prepare('SELECT * FROM r...')
+#1 {main}
+  thrown in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 23
+[02-Oct-2021 06:59:10 America/Boise] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=?' at line 1 in /home3/bhicxumy/public_html/lsl/register_CRU.php:23
+Stack trace:
+#0 /home3/bhicxumy/public_html/lsl/register_CRU.php(23): mysqli->prepare('SELECT * FROM r...')
+#1 {main}
+  thrown in /home3/bhicxumy/public_html/lsl/register_CRU.php on line 23
