@@ -16,6 +16,13 @@ $action = GetParam("action");
 
 if ("Create" == $action)
 {
+$sql = "INSERT INTO ".$table." (avatar_key, registration_date, amount, experience) VALUES ('".$avatar."', '".date("Y-m-d")."',0,0)";
+if ($conn->query($sql) === TRUE) {
+  echo "You have been added to the database!";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 }
 
 else if ("Read" == $action)
