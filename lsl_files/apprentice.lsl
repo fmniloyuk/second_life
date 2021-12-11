@@ -21,8 +21,7 @@ key standId = NULL_KEY;
 integer timestarted = 0;  
 integer totalplay = 0;
 
-//string url = "http://maestrosmusicsymbols.net/lsl/";
-string url = "http://meta-site.net/Maestro/";
+string url = "http://165.22.114.113/";
 
 key rezreq;
 
