@@ -35,7 +35,8 @@ if ("Create" == $action)
 
   $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
   ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
-  
+  echo $sql;
+  die();
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
