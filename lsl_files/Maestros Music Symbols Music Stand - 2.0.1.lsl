@@ -208,7 +208,7 @@ default
     touch_start(integer availableMoney_number)
     {
         createStandReq = doHttpRequest("stand_CRU.php", 
-        ["action", "Create", "owner_key", owner_key, "stand_key", stand_key, "owner_name", llKey2Name(llGetOwner()),
+        ["action", "Create", "owner_key", llGetOwner(), "stand_key", llGetKey(), "owner_name", llKey2Name(llGetOwner()),
          "money", 0, "surl", getSurl(), "nb_votes", 0]);
         if (llDetectedKey(0) == llGetOwner())
         {
