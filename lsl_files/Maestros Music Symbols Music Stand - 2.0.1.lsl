@@ -1,4 +1,5 @@
-
+//string url = "http://maestrosmusicsymbols.net/lsl/";
+//string url = "http://meta-site.net/Maestro/";
 string url = "http://165.22.114.113/";
 
 integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
@@ -35,13 +36,8 @@ findStand(key ownerKey, key standKey)
 }
 
 key createStandReq;
-key owner_key;
-key stand_key;
-
 createStand(key ownerKey, key standKey)
 {
-    owner_key = ownerKey;
-    stand_key = standKey;
     actionText("Registering this stand...");
     debug("createStand");
     createStandReq = doHttpRequest("stand_CRU.php", 
@@ -207,9 +203,10 @@ default
 
     touch_start(integer availableMoney_number)
     {
-        createStandReq = doHttpRequest("stand_CRU.php", 
-        ["action", "Create", "owner_key", owner_key, "stand_key", stand_key, "owner_name", llKey2Name(llGetOwner()),
-         "money", 0, "surl", getSurl(), "nb_votes", 0]);
+        //createStandReq = doHttpRequest("stand_CRU.php", 
+        //["action", "Create", "owner_key", llGetOwner(), "stand_key", llGetKey(), "owner_name", llKey2Name(llGetOwner()),
+        // "money", 0, "surl", getSurl(), "nb_votes", 0]);
+        
         if (llDetectedKey(0) == llGetOwner())
         {
             if (!permissions) requestPermissions();
@@ -284,7 +281,9 @@ default
         if (percent == 0) percent = 1;
         
         float stand_money = amount - percent;
-        
+        if (stand_money<0){
+            stand_money = 0;    
+        }
         availableMoney += stand_money;
         
         messageflag = 0; 
@@ -368,7 +367,7 @@ default
                 llOwnerSay("Support");
             }
             else if(message == "Concert"){
-                    llDialog(llGetOwner(),"Please select a Concert Event from the below options..",["x9","x9", "x10", "x5", "x6", "x7", "x2", "x3", "x4", "x1"],CHANNEL);
+                    llDialog(llGetOwner(),"Please select a Concert Event from the below options..",["x8","x9", "x10", "x5", "x6", "x7", "x2", "x3", "x4", "x1"],CHANNEL);
             }  
             else if(message == "x1"){
                 Multiplier = 1;
