@@ -24,8 +24,7 @@ $nb_votes = GetParam('nb_votes',"");
 if ("Create" == $action)
 {
   try{
-
-
+    
   $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
   ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
   
