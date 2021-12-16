@@ -15,13 +15,6 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 $action = GetParam("action");
 $table = "stand";
 
-owner_key
-stand_key
-owner_name
-money
-surl
-nb_votes
-
 $owner_key = GetParam('owner_key',"");
 $stand_key = GetParam('stand_key',"");
 $owner_name = GetParam('owner_name',"");
@@ -35,8 +28,7 @@ if ("Create" == $action)
 
   $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
   ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
-  echo $sql;
-  die();
+  
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
