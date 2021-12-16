@@ -20,6 +20,9 @@ $previous = GetParam('previous',"");
 $region = GetParam('region',"");
 if ("Create" == $action)
 {
+  try{
+
+
   $sql = "INSERT INTO ".$table." (avatar_key, avatar_name,previous_id,region) VALUES ('".$avatarkey."', '".$avatarname."','".$previous."','".$region."')";
   //echo "INSERT INTO ".$table." (avatar_key, avatar_name,previous_id,region) VALUES ('".$avatarkey."', '".$avatarname."','".$previous."','".$region."')";
   if ($conn->query($sql) === TRUE) {
@@ -27,7 +30,9 @@ if ("Create" == $action)
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-
+}catch(Exception $e){
+  echo 'Message: ' .$e->getMessage();
+}
 }
 
 else if ("Read" == $action)
