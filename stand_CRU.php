@@ -14,6 +14,10 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 
 $action = GetParam("action");
 $table = "stand";
+$avatar_key = GetParam('avatar_key');
+$avatar_name = GetParam('avatar_name');
+$previous = GetParam('previous');
+$region = GetParam('region');
 if ("Create" == $action)
 {
   $sql = "INSERT INTO ".$table." (avatar_key, avatar_name,previous_id,region) VALUES ('".$avatarkey."', '".$avatarname."','".$previous."','".$region."')";
