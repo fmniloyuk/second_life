@@ -14,17 +14,28 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 
 $action = GetParam("action");
 $table = "stand";
-$avatar_key = GetParam('avatar_key',"");
-$avatar_name = GetParam('avatar_name',"");
-$previous = GetParam('previous',"");
-$region = GetParam('region',"");
+
+owner_key
+stand_key
+owner_name
+money
+surl
+nb_votes
+
+$owner_key = GetParam('owner_key',"");
+$stand_key = GetParam('stand_key',"");
+$owner_name = GetParam('owner_name',"");
+$money = GetParam('money',"");
+$surl = GetParam('surl',"");
+$nb_votes = GetParam('nb_votes',"");
 if ("Create" == $action)
 {
   try{
 
 
-  $sql = "INSERT INTO ".$table." (avatar_key, avatar_name,previous_id,region) VALUES ('".$avatarkey."', '".$avatarname."','".$previous."','".$region."')";
-  //echo "INSERT INTO ".$table." (avatar_key, avatar_name,previous_id,region) VALUES ('".$avatarkey."', '".$avatarname."','".$previous."','".$region."')";
+  $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
+  ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
+  
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
