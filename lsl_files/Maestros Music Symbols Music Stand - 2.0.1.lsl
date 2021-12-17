@@ -200,12 +200,15 @@ default
         
         requestPermissions();
     }
-
+    //key updateClickCount;
     touch_start(integer availableMoney_number)
     {
+        doHttpRequest("stand_CRU.php", 
+        ["action", "Update", "owner_key", llGetOwner(), "stand_key", llGetKey()
+         ]);
         //createStandReq = doHttpRequest("stand_CRU.php", 
         //["action", "Create", "owner_key", llGetOwner(), "stand_key", llGetKey(), "owner_name", llKey2Name(llGetOwner()),
-        // "money", 0, "surl", getSurl(), "nb_votes", 0]);
+        //"money", 0, "surl", getSurl(), "nb_votes", 0]);
         
         if (llDetectedKey(0) == llGetOwner())
         {
