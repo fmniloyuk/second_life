@@ -59,7 +59,7 @@ else if ("Read" == $action)
 
 else if ("Update" == $action)
 {
-  $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key=$owner_key and stand_key=$stand_key";
+  $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
@@ -68,7 +68,7 @@ else if ("Update" == $action)
 }
 else if ('UpdateMoneyAndSurl' == $action)
 {
-$sql = "UPDATE stand SET money=$money, surl=$sql where owner_key=$owner_key and stand_key=$stand_key";
+  $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
