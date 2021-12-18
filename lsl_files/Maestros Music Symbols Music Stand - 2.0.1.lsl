@@ -1,5 +1,4 @@
-//string url = "http://maestrosmusicsymbols.net/lsl/";
-//string url = "http://meta-site.net/Maestro/";
+
 string url = "http://165.22.114.113/";
 
 integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
@@ -283,6 +282,7 @@ default
         
         if (percent == 0) percent = 1;
         
+        //if amount is 0 then stand_money will be -1 
         float stand_money = amount - percent;
         if (stand_money<0){
             stand_money = 0;    
