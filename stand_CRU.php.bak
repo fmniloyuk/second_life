@@ -24,36 +24,15 @@ $nb_votes = GetParam('nb_votes',"");
 if ("Create" == $action)
 {
   try{
-  $sql = "SELECT * FROM stand WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'"  ;
-  if ($result=mysqli_query($conn,$sql))
-  {
-    // Return the number of rows in result set
-    $rowcount=mysqli_num_rows($result);
     
-    //counting existing records
-    if($rowcount==0){
-      //inserting if no records found
-      $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
-      ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
-      
-      if ($conn->query($sql) === TRUE) {
-        echo "Music stand is updated successfully...";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }else{
-      //updating exsisting record
-      $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
-      if ($conn->query($sql) === TRUE) {
-        echo "Music stand is updated successfully...";
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }
-    // Free result set
-    mysqli_free_result($result);
-  }
+  $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
+  ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
   
+  if ($conn->query($sql) === TRUE) {
+    echo "Music stand is updated successfully...";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 }catch(Exception $e){
   echo 'Message: ' .$e->getMessage();
 }
@@ -102,4 +81,3 @@ else
 {
     resp("NOT MANAGED");
 }
-
