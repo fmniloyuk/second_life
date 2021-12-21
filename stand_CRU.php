@@ -37,7 +37,7 @@ if ("Create" == $action)
       ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
       
       if ($conn->query($sql) === TRUE) {
-        echo "Music stand is updated successfully...";
+        echo "Music stand has registered successfully...";
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
@@ -45,7 +45,7 @@ if ("Create" == $action)
       //updating exsisting record
       $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
       if ($conn->query($sql) === TRUE) {
-        echo "Music stand is updated successfully...";
+        echo "Music stand has updated successfully...";
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
@@ -91,7 +91,7 @@ else if ("Update" == $action)
 
   $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   if ($conn->query($sql) === TRUE) {
-    echo "Music stand is updated successfully...";
+    echo "A new click on music stand has recorded successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
@@ -100,7 +100,7 @@ else if ('UpdateMoneyAndSurl' == $action)
 {
   $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   if ($conn->query($sql) === TRUE) {
-    echo "Music stand is updated successfully...";
+    echo "Music stand has updated successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
