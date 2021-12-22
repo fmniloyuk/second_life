@@ -1,6 +1,7 @@
 
 string url = "http://165.22.114.113/";
 
+// Debug starts 
 integer debugIsOn = FALSE; 
 integer SCRIPT_DEBUG_CHANNEL = -20210000; 
 
