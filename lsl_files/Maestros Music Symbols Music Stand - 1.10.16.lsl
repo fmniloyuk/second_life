@@ -147,11 +147,15 @@ init()
     RENAME_CHANNEL = llFloor(llFrand(7483)+3342);
     llListen(RENAME_CHANNEL,"",NULL_KEY,"");
         
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(5);
     llSetText("",<1,0,0>,1);
     standname = llGetObjectName();
     hover();
-         
+        
+    // llSetPayPrice( integer price, list quick_pay_buttons );
+    // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
     llSetPayPrice(200, [200 ,500, 1000, 2000]);
     //showOptionsMenu();
 }
@@ -209,6 +213,8 @@ default
             if (!permissions) requestPermissions();
             else
             {
+                // llSetPayPrice( integer price, list quick_pay_buttons );
+                // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
                 showOptionsMenu();
             }
@@ -331,6 +337,9 @@ default
             //llOwnerSay("message"+message);
             if(message == "Deposit"){
                 llOwnerSay("Right click and pay to proceed....");
+                
+                // llSetPayPrice( integer price, list quick_pay_buttons );
+                // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
             }
             else  if(message == "Auto refill"){
@@ -474,6 +483,8 @@ default
                     }
                     else
                     {
+                        // llSetTimerEvent( float sec );
+                        // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
                         isBusy = TRUE;
@@ -621,6 +632,7 @@ default
         } 
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug("HTTP Response: "+ (string) status + " " + body);

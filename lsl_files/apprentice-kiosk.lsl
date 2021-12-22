@@ -198,7 +198,7 @@ state cash
     
     state_entry()
     { 
-        //llSetPayPrice( integer price, list quick_pay_buttons );
+        // llSetPayPrice( integer price, list quick_pay_buttons );
         // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
         llSetPayPrice(PAY_HIDE, prices);
         llOwnerSay("Activated");

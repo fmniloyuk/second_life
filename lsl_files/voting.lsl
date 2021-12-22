@@ -89,12 +89,16 @@ default
         
         listenDebug();
         
+        // llSetTimerEvent( float sec );
+        // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
         llSetTimerEvent(5);
         checkForActiveStand();               
     }   
     
     touch_start(integer nb)
     {
+        // key llDetectedKey( integer number );
+        // Returns a key that is the UUID of the detected object or avatar number.
         key who = llDetectedKey(0);
         if (toucher != NULL_KEY) 
             llRegionSayTo(who, 0,"The voting box is used by an other player. Please try in some seconds.");    
@@ -133,6 +137,7 @@ default
         }  
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);
@@ -164,6 +169,7 @@ default
                 
                 integer diff = llGetUnixTime() - lastVoting;
                 
+                //if last vote recorded less than 7 days ago 
                 if (FALSE && diff < 7 * DAY) llRegionSayTo(toucher, 0, "You can vote only each 7 days.");
                 else
                 {

@@ -90,6 +90,8 @@ default
         
         listenDebug();
         
+        // llSetTimerEvent( float sec );
+        // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
         llSetTimerEvent(5);
         checkForActiveStand();               
     }   
@@ -134,6 +136,7 @@ default
         }  
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);

@@ -278,6 +278,8 @@ init()
 
 stop()
 {
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(0);
     llSetText("", <0,1,0>, 1);
     standId = NULL_KEY;
@@ -342,6 +344,8 @@ start(string animation, integer countValue)
     llMessageLinked(LINK_THIS,23729,"start","");
     llStartAnimation(currentAnim);
 
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
     ebcToUse = "Any"; 
@@ -563,6 +567,7 @@ default
             llOwnerSay("/me must be worn and not rezzed in world. Please take it back in your inventory and wear.");
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);

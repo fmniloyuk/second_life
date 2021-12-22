@@ -142,6 +142,7 @@ state running
        }
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);
@@ -186,6 +187,8 @@ state running
                     llDialog(currentUser,"\nYou have "+(string)currentBalance+" L$ in your account.\n \nPlease confirm to withdraw amount in 10 seconds",
                         ["Confirm"],channel);
                     counter = 10;
+                    // llSetTimerEvent( float sec );
+                    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                     llSetTimerEvent(1);
                 } 
             }
@@ -221,6 +224,8 @@ state running
         {
             if (message == "Confirm")
             { 
+                // llSetTimerEvent( float sec );
+                // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                 llSetTimerEvent(10);
                 float moneyValue = (float) currentDBBalance - (float) currentBalance;
                 updateMoney(currentUser, moneyValue);
