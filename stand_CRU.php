@@ -28,42 +28,64 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 $action = GetParam("action");
 $table = "stand";
 
-$owner_key = GetParam('owner_key', "");
-$stand_key = GetParam('stand_key', "");
-$owner_name = GetParam('owner_name', "");
-$money = GetParam('money', "");
-$surl = GetParam('surl', "");
-$nb_votes = GetParam('nb_votes', "");
-
-
-if ("Create" == $action) {
-  try {
-    $sql = "INSERT INTO " . $table . " (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
-  ('" . $owner_key . "', '" . $stand_key . "','" . $owner_name . "','" . $money . "','" . $surl . "','" . $nb_votes . "')";
-
-    if ($conn->query($sql) === TRUE) {
-      echo "Music stand is updated successfully...";
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+$owner_key = GetParam('owner_key',"");
+$stand_key = GetParam('stand_key',"");
+$owner_name = GetParam('owner_name',"");
+$money = GetParam('money',"");
+$surl = GetParam('surl',"");
+$nb_votes = GetParam('nb_votes',"");
+if ("Create" == $action)
+{
+  try{
+  $sql = "SELECT * FROM stand WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'"  ;
+  if ($result=mysqli_query($conn,$sql))
+  {
+    // Return the number of rows in result set
+    $rowcount=mysqli_num_rows($result);
+    
+    //counting existing records
+    if($rowcount==0){
+      //inserting if no records found
+      $sql = "INSERT INTO ".$table." (owner_key, stand_key, owner_name, money, surl, nb_votes) VALUES 
+      ('".$owner_key."', '".$stand_key."','".$owner_name."','".$money."','".$surl."','".$nb_votes."')";
+      
+      if ($conn->query($sql) === TRUE) {
+        echo "Music stand is updated successfully...";
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    }else{
+      //updating exsisting record
+      $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
+      if ($conn->query($sql) === TRUE) {
+        echo "Music stand is updated successfully...";
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
-  } catch (Exception $e) {
-    echo 'Message: ' . $e->getMessage();
+    // Free result set
+    mysqli_free_result($result);
   }
-} else if ("Read" == $action) {
-  $stmt = $conn->prepare("SELECT * FROM register avatar_key=?");
-  $stmt->bind_param("s", $avatar_key);
-  if ($stmt->execute()) {
-    $stmt->store_result();
-    if ($stmt->num_rows == 0) resp("NOT FOUND");
-    else {
-      resp("FOUND");
-      $row = $stmt->fetch_assoc();
-      foreach ($row as $key => $value) resp($key . ":" . $value);
-    }
-  } else echo_error("During Read");
-  $stmt->close();
-} else if ("Update" == $action) {
-  $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='" . $owner_key . "' and stand_key='" . $stand_key . "'";
+  
+}catch(Exception $e){
+  echo 'Message: ' .$e->getMessage();
+}
+}
+
+
+else if ("Update" == $action)
+{
+  $maxClick = 10;
+  $sql = "SELECT * FROM stand WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+    if($row['clicks']>=$maxClick){
+    echo "maximum number of clicks reached";
+    return;
+  }
+
+  $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
+
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
@@ -79,3 +101,4 @@ if ("Create" == $action) {
 } else {
   resp("NOT MANAGED");
 }
+
