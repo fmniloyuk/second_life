@@ -80,6 +80,8 @@ key toucher = NULL_KEY;
 
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer p) { llResetScript(); }
     
     state_entry()

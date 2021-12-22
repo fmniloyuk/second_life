@@ -89,6 +89,8 @@ updateMoney(key avatarKey, float moneyValue)
 
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param) { llResetScript(); }    
     state_entry() 
     { 
@@ -113,6 +115,8 @@ default
 
 state running
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param) { llResetScript(); } 
         
     state_entry()
