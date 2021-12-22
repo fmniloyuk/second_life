@@ -80,6 +80,8 @@ key toucher = NULL_KEY;
 
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer p) { llResetScript(); }
     
     state_entry()
@@ -91,6 +93,8 @@ default
         
         listenDebug();
         
+        // llSetTimerEvent( float sec );
+        // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
         llSetTimerEvent(5);
         checkForActiveStand();               
     }   
@@ -138,6 +142,7 @@ default
         }  
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);

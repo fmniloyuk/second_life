@@ -4,9 +4,22 @@
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-function GetParam($name, $default = "") { return array_key_exists($name, $_GET) ? $_GET[$name]: $default;}
-function echo_error($s) {resp("ERROR: " + $s);}
-function resp($s) {echo($s. "\n");}
+function GetParam($name, $default = "")
+{
+  // array_key_exists(string|int $key, array $array): bool
+  // array_key_exists() returns true if the given key is set in the array. key can be any value possible for an array index.
+  return array_key_exists($name, $_GET) ? $_GET[$name] : $default;
+}
+
+function echo_error($s)
+{
+  resp("ERROR: " + $s);
+}
+
+function resp($s)
+{
+  echo ($s . "\n");
+}
 
 require_once("config.php");
 
@@ -59,24 +72,6 @@ if ("Create" == $action)
 }
 }
 
-else if ("Read" == $action)
-{
-    $stmt = $conn->prepare("SELECT * FROM register avatar_key=?"); 
-    $stmt->bind_param("s", $avatar_key);
-    if ($stmt->execute())
-    {
-        $stmt->store_result();
-        if ($stmt->num_rows == 0) resp("NOT FOUND");
-        else
-        {
-            resp("FOUND");
-            $row = $stmt->fetch_assoc();
-            foreach ($row as $key => $value) resp($key.":".$value);
-        }
-    }
-    else echo_error("During Read");
-    $stmt->close();
-}
 
 else if ("Update" == $action)
 {
@@ -90,25 +85,20 @@ else if ("Update" == $action)
   }
 
   $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
+
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-}
-else if ('UpdateMoneyAndSurl' == $action)
-{
-  $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
+} else if ('UpdateMoneyAndSurl' == $action) {
+  $sql = "UPDATE stand SET money='" . $money . "', surl='" . $surl . "' where owner_key='" . $owner_key . "' and stand_key='" . $stand_key . "'";
   if ($conn->query($sql) === TRUE) {
     echo "Music stand is updated successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-
-}
-
-else
-{
-    resp("NOT MANAGED");
+} else {
+  resp("NOT MANAGED");
 }
 

@@ -94,7 +94,11 @@ updateProperties(key user)
 key currentUser;
 integer boosterIncrement;
 
-noText() { llSetText("", <1,1,1>, 1); }
+noText() {
+     //llSetText( string text, vector color, float alpha );
+     // Displays text that hovers over the prim with specific color and translucency (specified with alpha).
+     llSetText("", <1,1,1>, 1); 
+    }
 
 manageUpdatingEBC()
 {
@@ -113,6 +117,8 @@ integer step = INFO;
 
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param)
     {
         llResetScript();
@@ -127,14 +133,22 @@ default
         else
         {
             llOwnerSay("Kiosk for '"+ type + "' boosters is starting. Please allow Debit permission...");
+            
+            // llSetPayPrice( integer price, list quick_pay_buttons );
+            // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
             llSetPayPrice(PAY_HIDE, [PAY_HIDE ,PAY_HIDE, PAY_HIDE, PAY_HIDE]);
+            
+            // llRequestPermissions( key agent, integer permissions );
+            // PERMISSION_DEBIT => take money from agent's account	
             llRequestPermissions(llGetOwner(), PERMISSION_DEBIT);
         }
     }
     
+    // Triggered when an agent grants run time permissions to this script.
     run_time_permissions(integer perm)
     {
         if (perm & PERMISSION_DEBIT)
+            //switching to another state
             state cash;
     }
     
@@ -144,9 +158,12 @@ default
              llRequestPermissions(llGetOwner(), PERMISSION_DEBIT);
     }
 }
-    
+
+// cash state
 state cash
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param) 
     {
         llResetScript();
@@ -154,6 +171,8 @@ state cash
     
     state_entry()
     { 
+        // llSetPayPrice( integer price, list quick_pay_buttons );
+        // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
         llSetPayPrice(PAY_HIDE, prices);
         llOwnerSay("Activated");
         
@@ -169,6 +188,8 @@ state cash
     
     money(key id, integer price)
     {        
+        // integer llListFindList( list src, list test );
+        // Returns the integer index of the first instance of test in src.
         integer index = llListFindList(prices, [price]);
         if (index != -1) booster = llList2Integer(boosters, index);
         else booster = 1;
@@ -192,6 +213,7 @@ state cash
         if (SCRIPT_DEBUG_CHANNEL == channel) manageDebug(message);
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);

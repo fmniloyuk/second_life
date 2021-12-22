@@ -1,5 +1,5 @@
-//http://maestrosmusicsymbols.net/rules/
-//[08:41] jbc71: http://maestrosmusicsymbols.net/maestros-music-symbols-lands/
+// http://maestrosmusicsymbols.net/rules/
+// http://maestrosmusicsymbols.net/maestros-music-symbols-lands/
 
 integer HUD_CHANNEL = 2021091821;
 
@@ -18,6 +18,8 @@ default
 
     touch_start(integer total_number)
     {
+        // string llGetLinkName( integer link );
+        // Returns a string that is the name of link in link set
         string primName = llGetLinkName(llDetectedLinkNumber(0));
         
         if ("CONDUCT" == primName)
@@ -44,12 +46,17 @@ default
         else
             llOwnerSay("Prim not managed : " + primName);
     }
+
+
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         llOwnerSay(body);
         
         if (request_id == balancekey)
         {           
+           // list llCSV2List( string src );
+           // This function takes a string of values separated by commas, and turns it into a list. 
            list temp = llCSV2List(body);
            if(llList2String(temp,0) == "successfull"){
                llOwnerSay("your account balance is "+(string)llList2String(temp,1)+" L$");
@@ -61,6 +68,8 @@ default
         }
         else if (request_id == landmarkkey)
         {
+           // list llCSV2List( string src );
+           // This function takes a string of values separated by commas, and turns it into a list.
            list temp = llCSV2List(body);
            if(llList2String(temp,0) == "successfull"){
                landmark = (integer)llList2String(temp,2);

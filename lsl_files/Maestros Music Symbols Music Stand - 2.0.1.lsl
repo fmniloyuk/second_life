@@ -19,13 +19,21 @@ key doHttpRequest(string php, list params)
     return llHTTPRequest(req, [], "");
 }
 
-string getSurl() { vector pos = llGetPos(); return "http://slurl.com/secondlife/" + llGetRegionName() + "/" + (string) llRound(pos.x) + "/" + (string)llRound(pos.y) + "/"+(string)llRound(pos.z); }
+string getSurl() { 
+    //  vector llGetPos();
+    // Returns the vector position of the task in region coordinates
+    vector pos = llGetPos(); 
+    return "http://slurl.com/secondlife/" + llGetRegionName() + "/" + (string) llRound(pos.x) + "/" + (string)llRound(pos.y) + "/"+(string)llRound(pos.z); 
+}
 
 actionText(string s)
 {
+    // llSetText( string text, vector color, float alpha );
+    // Displays text that hovers over the prim with specific color and translucency (specified with alpha).
     llSetText(s, <1,1,0>, 1);        
 }
 
+//Search for existing stand on the database 
 key findStandReq;
 findStand(key ownerKey, key standKey)
 {
@@ -64,6 +72,10 @@ addVoteForStand()
         ["action", "UpdateNbVotes", "owner_key", llGetOwner(), "stand_key", standKey, "nb_votes", "+1"]);
 }
 
+
+
+
+// Clarification of rewards, pay out and XP for Music Stand
 integer BATON_CHANNEL       = 2021091801;
 integer BATON_REPLY_CHANNEL = 2021091808;
 
@@ -89,30 +101,37 @@ list tempplayers;
 
 integer minimumamount = 1;
 
+// Type of Reward:   Category B - Sharps (with relevant Key Signature).
 list sharps = [0.005,0.005,0.020,0.040,1,1.09];
 list sharpsexp = [1,2,3,4,5,6];
 list sharpsname = ["C Major (No sharps or flats)","G Major (F#)","D Major (F#, C#) ","A Major (F#, C#, G#)","E Major (F#, C#, G#, D#)","B Major (F#, C#, G#, D#, A#)"];
 
 
+// Type of Reward:   Category C - Flats (with relevant Key Signature).
 list flats = [0.010,0.020,0.030,0.060,0.089,1];
 list flatsexp = [1,2,3,4,5,6];
 list flatsname = ["F Major (B♭)","B♭ Major (B♭,E♭)","E♭ Major (B♭,E♭,A♭)","A♭ Major (B♭,E♭,A♭,D♭)","D♭ Major (B♭,E♭,A♭,D♭,G♭)","G♭ Major (B♭,E♭,A♭,D♭,G♭,C♭)"];
 
 
+// Type of Reward:   Category A - Notes.
 list notes = [0.010,0.020,0.030,0.040,0.050,0.089,2];
 list notesexp = [1,2,3,4,5,6,7];
 list notesname = ["Whole Note (4 counts)", "Half Note (2 counts)", "Quarter Note (1 count)","Eighth Note (quaver)","Sixteenth Note (semiquaver)","Dotted Half Note (3 counts)","Dotted Quarter Note (1½ counts)"];
 
 
+// Type of Reward:   Category D - Major Chords.
 list majorchords = [0.01,0.02,0.20,0.04,0.20,0.10];
 list majorchordsexp = [1,2,3,4,5,6];
 list majorchordsname =["C Major – (C E G)","G Major – (G B D)","D Major - (D F# A)","E Major – (E G# B)","A Major -  (A C# E)", "B Major – (B D# F#)"];
 
+
+// Type of Reward:   Category F – Rests.
 list rests = [0.07,1,0.09,0.10,2,2];
 list restsexp = [1,2,3,4,5,6];
 list restsname =["Whole Note Rest","Half Note Rest","Quarter Note Rest","Eighth Note Rest", "1/16th Note Rest","1/32nd Note Rest"];
 
 
+// Type of Reward:  Category G - Performance Directions.
 list performancedirections = [0.01,0.02,1,0.04,1,0.06,0.07];
 list performancedirectionsexp = [1,2,3,4,5,6,7];
 list performancename =["Treble Clef (Right Hand)","Bass Clef (Left Hand)","Piano - soft (P)","Mezzo Piano - Moderately Soft (MP)","Forte - Loud (F) ","Mezzo Forte - Moderately Loud (MF)","Fine (The End)"];
@@ -144,14 +163,21 @@ init()
     CHANNEL = llFloor(llFrand(7483)+4837);
     llListen(CHANNEL,"", NULL_KEY,"");
     
+    // float llFrand( float mag );
+    // Returns a float that is pseudo random in the range [0.0, mag) or (mag, 0.0].[1]
+    // This means that the returned value can be any value in the range 0.0 to mag including 0.0, but not including the value of mag itself. The sign of mag matches the return.
     RENAME_CHANNEL = llFloor(llFrand(7483)+3342);
     llListen(RENAME_CHANNEL,"",NULL_KEY,"");
         
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(5);
     llSetText("",<1,0,0>,1);
     standname = llGetObjectName();
     hover();
          
+    // llSetPayPrice( integer price, list quick_pay_buttons );
+    // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
     llSetPayPrice(200, [200 ,500, 1000, 2000]);
     //showOptionsMenu();
 }
@@ -184,6 +210,8 @@ updateXpAndMoney(key avatarKey, integer xp, float gainedMoney)
 
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer p) { llResetScript(); }
     
     state_entry() 
@@ -214,6 +242,8 @@ default
             if (!permissions) requestPermissions();
             else
             {
+                // llSetPayPrice( integer price, list quick_pay_buttons );
+                // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
                 showOptionsMenu();
             }
@@ -306,6 +336,7 @@ default
         updateStandMoneyAndSurl();
     } 
     
+    
     listen(integer channel, string name, key id, string message)
     {
         debug("Listen: " + (string) channel + " " + message);
@@ -335,10 +366,13 @@ default
             return;    
         }
         
+        // Handle dialog box response 
         if(channel == CHANNEL){
             //llOwnerSay("message"+message);
             if(message == "Deposit"){
                 llOwnerSay("Right click and pay to proceed....");
+                // llSetPayPrice( integer price, list quick_pay_buttons );
+                // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
             }
             else  if(message == "Auto refill"){
@@ -369,6 +403,7 @@ default
             else if(message == "Support"){
                 llOwnerSay("Support");
             }
+            // The Music Stands will be able to dc multiplier events x2,x3,x4,x5,x6,x7,x8, x9, xl0 payouts in L$ are reflected by the type of event - Knowledge rewards and XP remain the same.
             else if(message == "Concert"){
                     llDialog(llGetOwner(),"Please select a Concert Event from the below options..",["x8","x9", "x10", "x5", "x6", "x7", "x2", "x3", "x4", "x1"],CHANNEL);
             }  
@@ -443,6 +478,8 @@ default
             else if((integer)message > 0){
                 availableMoney += (integer)message;
                 debug("Available Money: "+ (string)availableMoney);
+                // Function: integer llGiveMoney( key destination, integer amount );
+                // Transfer amount of L$ money from script owner to destination avatar.
                 llGiveMoney(mowner,(integer)message);
                  moneyreq = llHTTPRequest(url+"stand.php?money="+(string)availableMoney+"&sender="+(string)llEscapeURL(llGetOwner())+"&sendername="+(string)llEscapeURL(llKey2Name(llGetOwner()))+"&region="+(string)llEscapeURL(llGetRegionName())+"&present="+(string)presentuuid+"&previous="+(string)previousuuid, [], "");
                 hover();
@@ -482,6 +519,8 @@ default
                     }
                     else
                     {
+                        // llSetTimerEvent( float sec );
+                        // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
                         isBusy = TRUE;
@@ -629,6 +668,7 @@ default
         } 
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug("HTTP Response: "+ (string) status + " " + body);

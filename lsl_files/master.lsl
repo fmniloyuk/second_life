@@ -279,6 +279,8 @@ init()
 
 stop()
 {
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(0);
     llSetText("", <0,1,0>, 1);
     standId = NULL_KEY;
@@ -318,8 +320,7 @@ integer currentBooster;
 
 start(string animation, integer countValue)
 {   
-    currentAnim = animation;
-    
+    currentAnim = animation;    
     count = countValue;
     
     currentBooster = NONE;
@@ -343,6 +344,8 @@ start(string animation, integer countValue)
     llMessageLinked(LINK_THIS,23729,"start","");
     llStartAnimation(currentAnim);
 
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
     ebcToUse = "Any"; 
@@ -394,6 +397,7 @@ setParams(integer type, integer xp, integer nbTimes)
     maxNbTimes = nbTimes;
 }
 
+// Energy Boost Charges System - reduces countdown speed.
 initFromType()
 {
     string name = llGetObjectName();
@@ -469,8 +473,11 @@ updateProperties()
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
-noText() { llSetText("", <1,1,1>, 1); }
+noText() {
+     llSetText("", <1,1,1>, 1); 
+    }
   
+// Player can use only one type of Baton during any 24-hour time period.    
 startIfAllowed(integer allowed, integer lastTime, string reason)
 {
     if (allowed)
@@ -556,12 +563,15 @@ default
         init();
     }
     
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param)
     {
         if (llGetAttached() == 0) 
             llOwnerSay("/me must be worn and not rezzed in world. Please take it back in your inventory and wear.");
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);

@@ -1,7 +1,26 @@
 
 string url = "http://165.22.114.113/";
 
-integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+// Debug starts 
+integer debugIsOn = FALSE; 
+integer SCRIPT_DEBUG_CHANNEL = -20210000; 
+
+listenDebug() { 
+    llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); 
+    llSay(SCRIPT_DEBUG_CHANNEL, "??");
+    } 
+    
+    manageDebug(string cmd) 
+    { if (cmd != "??") 
+        debugIsOn = (cmd == "DEBUG_ON"); 
+        llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); 
+    } 
+    
+    debug(string s) { 
+        if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); 
+    }
+// Debug ends
+
 
 key buyer = NULL_KEY;
 integer booster = 0;
@@ -20,7 +39,9 @@ list maestroPrices = [20 ,25, 30, 35];
 
 list boosters = [8, 16, 24, 36];
 
-integer contains(string source, string tag) { return llSubStringIndex(source, tag) != -1; }
+integer contains(string source, string tag) { 
+    return llSubStringIndex(source, tag) != -1; 
+}
 
 integer boosterCounterM = 0;
 integer boosterCounterA = 0;
@@ -67,7 +88,9 @@ initFromType()
     }
 }
 
-actionText(string s) { llSetText(s, <1,1,0>, 1); }
+actionText(string s) { 
+    llSetText(s, <1,1,0>, 1); 
+}
 
 key findRegisterReq;
 findRegister(key avatarKey)
@@ -94,7 +117,11 @@ updateProperties(key user)
 key currentUser;
 integer boosterIncrement;
 
-noText() { llSetText("", <1,1,1>, 1); }
+noText() { 
+    //llSetText( string text, vector color, float alpha );
+    // Displays text that hovers over the prim with specific color and translucency (specified with alpha).
+    llSetText("", <1,1,1>, 1); 
+}
 
 manageUpdatingEBC()
 {
@@ -111,8 +138,11 @@ integer PAYMENT_DONE = 1;
 
 integer step = INFO;
 
+//default state
 default
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param)
     {
         llResetScript();
@@ -127,14 +157,22 @@ default
         else
         {
             llOwnerSay("Kiosk for '"+ type + "' boosters is starting. Please allow Debit permission...");
+
+            //llSetPayPrice( integer price, list quick_pay_buttons );
+            // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
             llSetPayPrice(PAY_HIDE, [PAY_HIDE ,PAY_HIDE, PAY_HIDE, PAY_HIDE]);
+
+            // llRequestPermissions( key agent, integer permissions );
+            // PERMISSION_DEBIT => take money from agent's account	
             llRequestPermissions(llGetOwner(), PERMISSION_DEBIT);
         }
     }
     
+    // Triggered when an agent grants run time permissions to this script.
     run_time_permissions(integer perm)
     {
         if (perm & PERMISSION_DEBIT)
+            //switching to another state
             state cash;
     }
     
@@ -144,9 +182,15 @@ default
              llRequestPermissions(llGetOwner(), PERMISSION_DEBIT);
     }
 }
-    
+
+
+
+
+// cash state
 state cash
 {
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param) 
     {
         llResetScript();
@@ -154,6 +198,8 @@ state cash
     
     state_entry()
     { 
+        // llSetPayPrice( integer price, list quick_pay_buttons );
+        // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
         llSetPayPrice(PAY_HIDE, prices);
         llOwnerSay("Activated");
         
@@ -169,9 +215,14 @@ state cash
     
     money(key id, integer price)
     {        
+        // integer llListFindList( list src, list test );
+        // Returns the integer index of the first instance of test in src.
         integer index = llListFindList(prices, [price]);
-        if (index != -1) booster = llList2Integer(boosters, index);
-        else booster = 1;
+
+        if (index != -1) 
+            booster = llList2Integer(boosters, index);
+        else 
+            booster = 1;
         
         if ((string) llGetOwner() == "59992c57-4d1e-4f43-a0c4-6dc8ec37d665")
             debug("DEBUG : Money not sent");    
@@ -189,9 +240,11 @@ state cash
     
     listen(integer channel, string name, key k, string message)
     {
-        if (SCRIPT_DEBUG_CHANNEL == channel) manageDebug(message);
+        if (SCRIPT_DEBUG_CHANNEL == channel) 
+        manageDebug(message);
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);
