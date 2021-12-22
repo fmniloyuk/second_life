@@ -320,8 +320,7 @@ integer currentBooster;
 
 start(string animation, integer countValue)
 {   
-    currentAnim = animation;
-    
+    currentAnim = animation;    
     count = countValue;
     
     currentBooster = NONE;
@@ -398,6 +397,7 @@ setParams(integer type, integer xp, integer nbTimes)
     maxNbTimes = nbTimes;
 }
 
+// Energy Boost Charges System - reduces countdown speed.
 initFromType()
 {
     string name = llGetObjectName();
@@ -473,8 +473,11 @@ updateProperties()
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
-noText() { llSetText("", <1,1,1>, 1); }
+noText() {
+     llSetText("", <1,1,1>, 1); 
+    }
   
+// Player can use only one type of Baton during any 24-hour time period.    
 startIfAllowed(integer allowed, integer lastTime, string reason)
 {
     if (allowed)
