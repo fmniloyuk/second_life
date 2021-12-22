@@ -2,14 +2,12 @@
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-func GetParam($name, $default="") { return array_key_exists($name, $_GET) ? return $_GET[$name] : $default; }
-func echo_error($s) { resp("ERROR: " + $s); }
-func resp($s) { echo($s."\n"); }
+function GetParam($name, $default = "") { return array_key_exists($name, $_GET) ? $_GET[$name]: $default;}
+function echo_error($s) {resp("ERROR: " + $s);}
+function resp($s) {echo($s. "\n");}
 
-$hostname = "localhost";
-$username = "bhicxumy_jbclare";
-$password = "oK7C*fywikC7";
-$database = "bhicxumy_tester";
+//DATABASE CONNECTION:
+require_once("config.php");
     
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection error!");
 

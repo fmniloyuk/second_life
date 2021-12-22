@@ -1,12 +1,7 @@
 <?php    
 
 //DATABASE CONNECTION:
-
-    //Define the database information.
-    $hostname = "localhost";
-    $username = "bhicxumy_jbclare";
-    $password = "oK7C*fywikC7";
-    $database = "bhicxumy_tester";
+    require_once("config.php");
     $table    = "atm";
     
     //Connect to the database.

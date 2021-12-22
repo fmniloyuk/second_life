@@ -1,7 +1,6 @@
 <?php    
 
 //DATABASE CONNECTION:
-
     require_once("config.php");
     $table    = "stand";
     
