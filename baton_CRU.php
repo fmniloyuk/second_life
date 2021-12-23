@@ -24,22 +24,24 @@ if ($action == "Create")
 
 else if ($action == "Read")
 {
-    $stmt = $conn->prepare("SELECT * FROM baton WHERE avatar_key=? AND baton_key=?");
-    $stmt->bind_param("ss", $avatar_key, $baton_key);
+    $sql = "SELECT * FROM baton WHERE avatar_key='".$avatar_key."'"." AND baton_key='".$baton_key."'";
     
-    if ($stmt->execute())
+    if ($result=mysqli_query($conn,$sql))
     {
-        $stmt->store_result();
-
-        if ($stmt->num_rows == 0) resp("NOT FOUND");
-        else
-        {
+    // Return the number of rows in result set
+    $rowcount=mysqli_num_rows($result);
+    
+    //counting existing records
+        if($rowcount==0){
+            resp("NOT FOUND");
+        }else{
             resp("FOUND");
-            $row = stmt->fetch_assoc();            
+            $row = $result->fetch_assoc();            
             foreach ($row as $key => $value) resp($key . ":" . $value);            
         }
-    }
-    else echo_error("During Baton Read");
+    // Free result set
+    mysqli_free_result($result);
+    }else echo_error("During Baton Read");
     
     $stmt->close();
     
