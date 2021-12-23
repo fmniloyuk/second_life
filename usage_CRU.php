@@ -13,7 +13,7 @@ require_once("config.php");
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection error!");
 
 $action = GetParam("action");
-$table = "usage";
+$table = "usage_cru";
 
 $user_key = GetParam('user_key',"");
 $location_key = GetParam('location_key',"");
@@ -55,7 +55,47 @@ else if ("Read" == $action)
     else echo_error("During Read");
     $stmt->close();
 }
-
+/*
+       ["action", "UpdateBatonTypeAndStartAndNbTimes", "user_key", userKey, "location_key", locationKey, 
+         "baton_type", batonType, "start", start, "nb_times", nbTimes]);
+}
+*/
+elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){//&]]*
+  try{
+    $sql = "SELECT * FROM usage_cru WHERE user_key='".$user_key."'";
+    if ($result=mysqli_query($conn,$sql))
+    {
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      
+      //counting existing records
+      if($rowcount==0){
+        //inserting if no records found
+        $sql = "INSERT INTO ".$table." (user_key, location_key, baton_type, start, nb_times) VALUES 
+        ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times."')";
+        
+        if ($conn->query($sql) === TRUE) {
+          echo "Baton usage is inserted";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+      }else{
+        //updating exsisting record
+        $sql = "UPDATE usage_cru SET baton_type='".$baton_type."', start='".$start."' nb_times='".$nb_times."' where user_key='".$user_key."'";
+        if ($conn->query($sql) === TRUE) {
+          echo "Baton is updated successfully...";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+      }
+      // Free result set
+      mysqli_free_result($result);
+    }
+    
+  }catch(Exception $e){
+    echo 'Message: ' .$e->getMessage();
+  }
+}
 else if ("Update" == $action)
 {
   // $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
