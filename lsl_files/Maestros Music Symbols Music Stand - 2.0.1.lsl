@@ -182,6 +182,7 @@ init()
     //showOptionsMenu();
 }
 
+// Show dialog box
 showOptionsMenu()
 {
     llDialog(llGetOwner(),"Please select any options from the given list",
@@ -312,8 +313,10 @@ default
         
         if (percent == 0) percent = 1;
         
-        //if amount is 0 then stand_money will be -1 
+        // if amount is 0 then stand_money will be -1 
         float stand_money = amount - percent;
+        
+        // if stand_money is negative then setting it to zero 
         if (stand_money<0){
             stand_money = 0;    
         }

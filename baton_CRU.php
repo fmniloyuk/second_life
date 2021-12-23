@@ -39,9 +39,10 @@ else if ($action == "Read")
             foreach ($row as $key => $value) resp($key . ":" . $value);            
         }
     }
-    else echo_error("During Baton Read")
+    else echo_error("During Baton Read");
     
-    $stmt->close();    
+    $stmt->close();
+    
 }
 
 else if ($action == "Update")

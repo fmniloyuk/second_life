@@ -540,7 +540,11 @@ checkForUsage()
     findUsage(llGetOwner(), currentParcel()); 
 }
 
-key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
+key currentParcel() {
+      // Function: list llGetParcelDetails( vector pos, list params );
+     // Returns a list that is the parcel details specified in params (in the same order) for the parcel at pos.
+     return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); 
+    }
    
 integer usageBatonType;
 integer usageStart;
