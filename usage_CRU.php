@@ -39,20 +39,35 @@ if ("Create" == $action)
 
 else if ("Read" == $action)
 {
-    $stmt = $conn->prepare("SELECT * FROM register avatar_key=?"); 
-    $stmt->bind_param("s", $avatar_key);
-    if ($stmt->execute())
+    $sql = "SELECT * FROM register WHERE avatar_key='".$avatar_key."'"; 
+    if ($result=mysqli_query($conn,$sql))
     {
-        $stmt->store_result();
-        if ($stmt->num_rows == 0) resp("NOT FOUND");
-        else
-        {
-            resp("FOUND");
-            $row = $stmt->fetch_assoc();
-            foreach ($row as $key => $value) resp($key.":".$value);
-        }
-    }
-    else echo_error("During Read");
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      
+      //counting existing records
+      if($rowcount==0){
+        resp("NOT FOUND");
+      }else{
+        resp("FOUND");
+        $row = $result->fetch_assoc();
+        foreach ($row as $key => $value) resp($key.":".$value);
+      }
+      // Free result set
+    mysqli_free_result($result);
+    }else echo_error("During Read");
+    // if ($stmt->execute())
+    // {
+    //     $stmt->store_result();
+    //     if ($stmt->num_rows == 0) resp("NOT FOUND");
+    //     else
+    //     {
+    //         resp("FOUND");
+    //         $row = $stmt->fetch_assoc();
+    //         foreach ($row as $key => $value) resp($key.":".$value);
+    //     }
+    // }
+    
     $stmt->close();
 }
 /*
