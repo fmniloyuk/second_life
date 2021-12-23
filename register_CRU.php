@@ -27,21 +27,22 @@ if ($conn->query($sql) === TRUE) {
 
 else if ("Read" == $action)
 {
-    $sql = $conn->prepare("SELECT * FROM register avatar_key='".$avatar_key."'"); 
-    if ($result=mysqli_query($conn,$sql))
-  {
-    // Return the number of rows in result set
-    $rowcount=mysqli_num_rows($result);
+    $stmt = $conn->prepare("SELECT * FROM register WHERE avatar_key=?"); 
+    $stmt->bind_param("s", $avatar_key);
     
-    //counting existing records
-    if($rowcount==0){
-      resp("NOT FOUND");
-    }else{
-      resp("FOUND");
+    if ($stmt->execute())
+    {
+        $stmt->store_result();
+        if ($stmt->num_rows == 0) resp("NOT FOUND");
+        else
+        {
+            resp("FOUND");
+            $row = $stmt->fetch_assoc();
+            foreach ($row as $key => $value) resp($key.":".$value);
+        }
     }
-  }
-    
-  mysqli_free_result($result);
+    else echo_error("During Read");
+    $stmt->close();
 }
 
 else if ("Update" == $action)
