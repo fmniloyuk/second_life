@@ -91,7 +91,7 @@ else if ("Update" == $action)
 
   $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   if ($conn->query($sql) === TRUE) {
-    echo "A new click on music stand has recorded successfully...";
+    echo "A click on music stand has recorded successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
