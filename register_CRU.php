@@ -16,7 +16,7 @@ $action = GetParam("action");
 $avatar_key = GetParam("avatar_key");
 if ("Create" == $action)
 {
-$sql = "INSERT INTO ".$table." (avatar_key, registration_date, amount, experience) VALUES ('".$avatar."', '".date("Y-m-d")."',0,0)";
+$sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
 if ($conn->query($sql) === TRUE) {
   echo "You have been added to the database!";
 } else {
