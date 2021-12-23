@@ -13,7 +13,7 @@ require_once("config.php");
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection error!");
 
 $action = GetParam("action");
-
+$avatar_key = GetParam("avatar_key");
 if ("Create" == $action)
 {
 $sql = "INSERT INTO ".$table." (avatar_key, registration_date, amount, experience) VALUES ('".$avatar."', '".date("Y-m-d")."',0,0)";
@@ -29,6 +29,7 @@ else if ("Read" == $action)
 {
     $stmt = $conn->prepare("SELECT * FROM register avatar_key=?"); 
     $stmt->bind_param("s", $avatar_key);
+    
     if ($stmt->execute())
     {
         $stmt->store_result();
