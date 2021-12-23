@@ -69,7 +69,7 @@ Players will have the option to manufacture the Energy Boost Charges and sell th
 
 
 
-## 7. Pro_duction Unit type and rewards.
+## 7. Production Unit type and rewards.
 Production Unit
 Apprentice Frofessional Maestro
 Levels xp reward
@@ -95,7 +95,7 @@ Also, there needs to be included in each script no copy, no mod, no transfer to 
 Every day, rewwds, materials and xp will be awarded to every player - randomized.
 
 
-## 10. Player ypte slhtrr on CIpe$Iiqq.
+## 10. Player vote station operation.
 A vote is classed as counted when the player clicks on the vote station once, players are allowed to vote once per week and the data for each land is displayed in the rankings section on the web site.
 
 
@@ -107,7 +107,7 @@ To be considered when Conducting Game is suocessfully up and running.
 A Leader board is required to display name/usemame/position of player, XP and earrings.
 
 
-## 13. Items already created working and or partl}, working
+## 13. Items already created working and or partly working
 Working ATM for cash out of payment with separate avatar account to handle deposits into Musie Stands Working HUD, with Conduct Button. 
 Other Buttons need configuring
 Working Apprentice Baton with XP and EBC and default conducting animation  Working Maestro Baton with correct XP and EBC and three conducting animations
