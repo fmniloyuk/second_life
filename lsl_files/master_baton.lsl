@@ -654,12 +654,12 @@ default
             list resp = llParseString2List(body, ["\n"], []);
             string ans = llList2String(resp, 0);
 
-            if ("FOUND" == ans)
+            if ("NOT FOUND" == ans)
             {
                 llOwnerSay("New location to conduct in !!!! Registration in progress...");    
                 createUsage(llGetOwner(), currentParcel(), batonType, llGetUnixTime(), 1);
             }
-            else if ("NOT FOUND" == ans)
+            else if ("FOUND" == ans)
             {
                 integer i;
                 integer size = llGetListLength(resp);
