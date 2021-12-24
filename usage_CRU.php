@@ -55,27 +55,11 @@ else if ("Read" == $action)
       }
       // Free result set
     mysqli_free_result($result);
-    }else echo_error("During Read");
-    // if ($stmt->execute())
-    // {
-    //     $stmt->store_result();
-    //     if ($stmt->num_rows == 0) resp("NOT FOUND");
-    //     else
-    //     {
-    //         resp("FOUND");
-    //         $row = $stmt->fetch_assoc();
-    //         foreach ($row as $key => $value) resp($key.":".$value);
-    //     }
-    // }
-    
+    }else echo_error("During Read");  
     $stmt->close();
 }
-/*
-       ["action", "UpdateBatonTypeAndStartAndNbTimes", "user_key", userKey, "location_key", locationKey, 
-         "baton_type", batonType, "start", start, "nb_times", nbTimes]);
-}
-*/
-elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){//&]]*
+
+elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){
   try{
     $sql = "SELECT * FROM usage_cru WHERE user_key='".$user_key."'";
     if ($result=mysqli_query($conn,$sql))
@@ -111,25 +95,6 @@ elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){//&]]*
     echo 'Message: ' .$e->getMessage();
   }
 }
-else if ("Update" == $action)
-{
-  // $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
-  // if ($conn->query($sql) === TRUE) {
-  //   echo "Music stand is updated successfully...";
-  // } else {
-  //   echo "Error: " . $sql . "<br>" . $conn->error;
-  // }
-}
-// else if ('UpdateMoneyAndSurl' == $action)
-// {
-//   $sql = "UPDATE stand SET money='".$money."', surl='".$surl."' where owner_key='".$owner_key."' and stand_key='".$stand_key."'";
-//   if ($conn->query($sql) === TRUE) {
-//     echo "Music stand is updated successfully...";
-//   } else {
-//     echo "Error: " . $sql . "<br>" . $conn->error;
-//   }
-
-// }
 
 else
 {

@@ -47,12 +47,10 @@ else if ($action == "Read")
     
 }
 
-else if ($action == "Update")
+else if ($action == "UpdateProperties")
 {
     
     
 }
-
-//            $sql = "INSERT INTO ".$table." (avatar_key, registration_date) VALUES ('".$avatar."', '".date("Y-m-d")."')";
 
 ?>

@@ -464,7 +464,7 @@ updateRegisterProperties(key userKey, string properties)
 {
     debug("updateProperties");
     actionText("Updating...");
-    updateRegisterPropertiesReq = doHttpRequest("register_CRU.php", 
+    updateRegisterPropertiesReq = doHttpRequest("baton_CRU.php", 
         ["action", "UpdateProperties", "avatar_key", userKey, "properties", properties]);
 }
 
