@@ -516,19 +516,19 @@ default
                     llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
                 else
                 {
-                    // if (isBusy)
-                    // {
-                    //     llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
-                    // }
-                    // else
-                    // {
+                    if (isBusy)
+                    {
+                        llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
+                    }
+                    else
+                    {
                         // llSetTimerEvent( float sec );
                         // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
                         isBusy = TRUE;
                         llRegionSay(BATON_CHANNEL,"searchb"+","+(string)batonPlayer);
-                    // }
+                    }
                 }
                     
             }
