@@ -90,7 +90,7 @@ elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){
         }
       }else{
         //updating exsisting record
-        $sql = "UPDATE usage_cru SET baton_type='".$baton_type."', start='".$start."', nb_times=nb_times+1 WHERE user_key='".$user_key."' and location_key='".$location_key."'";
+        $sql = "UPDATE usage_cru SET baton_type='".$baton_type."', start='".$start."', nb_times='".$nb_times."' WHERE user_key='".$user_key."' and location_key='".$location_key."'";
         if ($conn->query($sql) === TRUE) {
           echo "Baton is updated successfully...";
         } else {
