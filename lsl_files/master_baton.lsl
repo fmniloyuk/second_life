@@ -275,6 +275,7 @@ init()
     initFromType();
     
     findRegister(llGetOwner(), INITIAL);
+    llOwnerSay(llGetOwner());
 }
 
 stop()
