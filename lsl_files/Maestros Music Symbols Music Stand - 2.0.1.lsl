@@ -85,7 +85,7 @@ integer STAND_TO_VOTE_CHANNEL = 202110012;
 //integer amount = 0;
 integer CHANNEL = 0;
 integer RENAME_CHANNEL = 0; 
-float availableMoney = 0;
+float availableMoney = 100;
 integer messageflag = 0;
 key mowner = "e53a44de-09d6-438c-949e-ecf79104fee3";
 key taxowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
@@ -217,7 +217,7 @@ default
     
     state_entry() 
     {
-        availableMoney = 0;
+        availableMoney = 100;
         isBusy = TRUE;
         
         llListen(BATON_REPLY_CHANNEL,"", NULL_KEY,"");
@@ -265,10 +265,10 @@ default
                     llSleep(1);
                 }
                 else{
-                   /* llSetTimerEvent(5);
+                    llSetTimerEvent(5);
                     player = llDetectedKey(0);
-                    busy = 1;
-                    llRegionSay(BATON_CHANNEL,"searchb"+","+(string)llDetectedKey(0));*/
+                    isBusy = TRUE;
+                    llRegionSay(BATON_CHANNEL,"searchb"+","+(string)llDetectedKey(0));
                 }
             }
       }
@@ -516,19 +516,19 @@ default
                     llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
                 else
                 {
-                    if (isBusy)
-                    {
-                        llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
-                    }
-                    else
-                    {
+                    // if (isBusy)
+                    // {
+                    //     llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
+                    // }
+                    // else
+                    // {
                         // llSetTimerEvent( float sec );
                         // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
                         isBusy = TRUE;
                         llRegionSay(BATON_CHANNEL,"searchb"+","+(string)batonPlayer);
-                    }
+                    // }
                 }
                     
             }
