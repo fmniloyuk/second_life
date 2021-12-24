@@ -613,6 +613,7 @@ default
                 if (findingRegisterReason == INITIAL)
                 {
                     llOwnerSay("Your stats are " + stats + " / Boosters: Apprentice:" + (string) boosterCounterA + " - " + "Professional:" + (string) boosterCounterP + " - " + "Maestro:" + (string) boosterCounterM);  
+                    INITIAL = INITIAL + 1;
                 }
                 else
                 {
@@ -652,7 +653,7 @@ default
         {
             list resp = llParseString2List(body, ["\n"], []);
             string ans = llList2String(resp, 0);
-            
+
             if ("NOT FOUND" == ans)
             {
                 llOwnerSay("New location to conduct in !!!! Registration in progress...");    

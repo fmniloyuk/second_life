@@ -24,11 +24,11 @@ if ("Create" == $action)
 {
   try{
     
-  $sql = "INSERT INTO ".$table." (user_key, location_key, baton_type, stastartrt, nb_times) VALUES 
+  $sql = "INSERT INTO ".$table." (user_key, location_key, baton_type, start, nb_times) VALUES 
   ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times.""."')";
   
   if ($conn->query($sql) === TRUE) {
-    echo "Music stand is updated successfully...";
+    echo "Baton is updated successfully...";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
