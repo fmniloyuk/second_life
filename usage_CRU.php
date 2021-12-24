@@ -66,7 +66,7 @@ else if ("Read" == $action)
       // Free result set
     mysqli_free_result($result);
     }else echo_error("During Read");  
-    $stmt->close();
+    // $stmt->close();
 }
 
 elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){

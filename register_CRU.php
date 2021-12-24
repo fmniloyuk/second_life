@@ -58,7 +58,7 @@ else if ("Read" == $action)
     //     }
     // }
     
-    $stmt->close();
+    // $stmt->close();
 }
 
 else if ("Update" == $action)
