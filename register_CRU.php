@@ -14,6 +14,7 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 
 $action = GetParam("action");
 $avatar_key = GetParam("avatar_key");
+$properties = GetParam("properties");
 if ("Create" == $action)
 {
 $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
@@ -63,7 +64,46 @@ else if ("Read" == $action)
 else if ("Update" == $action)
 {
 }
-
+else if ("Update" == $action)
+{
+}
+else if ("UpdateProperties" == $action)
+{
+  try{
+    $sql = "SELECT * FROM baton WHERE avatar_key='".$avatar_key."'"  ;
+    if ($result=mysqli_query($conn,$sql))
+    {
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      
+      //counting existing records
+      if($rowcount==0){
+        //inserting if no records found
+        $sql = "INSERT INTO baton (avatar_key, properties) VALUES 
+        ('".$avatar_key."', '".$properties."')";
+        
+        if ($conn->query($sql) === TRUE) {
+          echo "Baton has been updated";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+      }else{
+        //updating exsisting record
+        $sql = "UPDATE baton SET properties='".$properties."' WHERE avatar_key='".$avatar_key."'";
+        if ($conn->query($sql) === TRUE) {
+          echo "Baton has been updated";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+      }
+      // Free result set
+      mysqli_free_result($result);
+    }
+    
+  }catch(Exception $e){
+    echo 'Message: ' .$e->getMessage();
+  }
+}
 else
 {
     resp("NOT MANAGED");

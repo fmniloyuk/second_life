@@ -23,15 +23,25 @@ $nb_times = GetParam('nb_times',"");
 if ("Create" == $action)
 {
   try{
-    
-  $sql = "INSERT INTO ".$table." (user_key, location_key, baton_type, start, nb_times) VALUES 
-  ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times.""."')";
+    $sql = "SELECT * FROM usage_cru WHERE user_key='".$user_key."' and location_key='".$location_key."'";
+    if ($result=mysqli_query($conn,$sql))
+    {
+      // Return the number of rows in result set
+      $rowcount=mysqli_num_rows($result);
+      
+      //counting existing records
+      if($rowcount==0){
+        $sql = "INSERT INTO ".$table." (user_key, location_key, baton_type, start, nb_times) VALUES 
+        ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times.""."')";
+        
+        if ($conn->query($sql) === TRUE) {
+          echo "Baton is updated successfully...";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }   
+      }
+    }
   
-  if ($conn->query($sql) === TRUE) {
-    echo "Baton is updated successfully...";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
 }catch(Exception $e){
   echo 'Message: ' .$e->getMessage();
 }
@@ -61,7 +71,7 @@ else if ("Read" == $action)
 
 elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){
   try{
-    $sql = "SELECT * FROM usage_cru WHERE user_key='".$user_key."'";
+    $sql = "SELECT * FROM usage_cru WHERE user_key='".$user_key."' and location_key='".$location_key."'";
     if ($result=mysqli_query($conn,$sql))
     {
       // Return the number of rows in result set
