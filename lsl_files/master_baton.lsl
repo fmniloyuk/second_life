@@ -720,6 +720,7 @@ default
                         else
                         {
                             debug("Max Nb Times reached");
+                            llOwnerSay("Max Nb Times reached");    
                             startIfAllowed(FALSE, usageStart, "NBTIMES");    
                         }
                     }

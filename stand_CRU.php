@@ -78,11 +78,11 @@ else if ("Update" == $action)
   $maxClick = 10;
   $sql = "SELECT * FROM stand WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
   $result = $conn->query($sql);
-  $row = $result->fetch_assoc();
-    if($row['clicks']>=$maxClick){
-    echo "maximum number of clicks reached";
-    return;
-  }
+  // $row = $result->fetch_assoc();
+  //   if($row['clicks']>=$maxClick){
+  //   echo "maximum number of clicks reached";
+  //   return;
+  // }
 
   $sql = "UPDATE stand SET clicks = clicks + 1 WHERE owner_key='".$owner_key."' and stand_key='".$stand_key."'";
 
