@@ -829,16 +829,18 @@ default
             }
             else if (llList2String(temp,1) == llGetOwner())
             {
-                if ("outofdist" == cmd)
+                if ("outofdist" == cmd){
                      llOwnerSay("You should be within 30 meter range");
-                
-                else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
+                     debug("You should be within 30 meter range");    
+
+                }else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY){
                      llOwnerSay("Music stand is out of fund...");
-                
-                else if ("searchb" == cmd)
+                     debug("Music stand is out of fund...");    
+
+                }else if ("searchb" == cmd)
                 {
                     standId = id;
-                    
+                    debug("Wearing Maestros Baton");
                     findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
                 }
                 else if ("timestart" == cmd && standId == id)

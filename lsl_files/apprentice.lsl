@@ -831,7 +831,7 @@ default
                 else if ("searchb" == cmd)
                 {
                     standId = id;
-                    
+                    debug("Wearing Apprentice Baton");
                     findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
                 }
                 else if ("timestart" == cmd && standId == id)
