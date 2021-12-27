@@ -2,7 +2,7 @@
 string url = "http://165.22.114.113/";
 
 integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
-
+integer contains(string source, string tag) { return llSubStringIndex(source, tag) != -1; }
 key doHttpRequest(string php, list params)
 {
     string paramsAsString = "";
@@ -228,9 +228,36 @@ default
         
         requestPermissions();
     }
+    
+
     //key updateClickCount;
     touch_start(integer availableMoney_number)
     {
+        list AttachedNames;
+        list AttachedUUIDs = llGetAttachedList(llDetectedKey(0));
+        integer i;
+        string baton_type_message = "";
+        string name = "";
+        while (i < llGetListLength(AttachedUUIDs) )
+        {
+            list temp = llGetObjectDetails(llList2Key(AttachedUUIDs,i),[OBJECT_NAME]);
+            name = llList2String(temp,0);
+            if (contains(name, "*Apprentice*")){
+                baton_type_message = "Wearing Apprentice Baton";
+            }
+            if (contains(name, "*Professional*")){
+                baton_type_message = "Wearing Professional Baton";
+            }
+            if (contains(name, "*Maestro*")){
+                baton_type_message = "Wearing Maestro Baton";
+            }
+            AttachedNames += [llList2String(temp,0)];
+            ++i;
+        }
+        if(baton_type_message == ""){
+            baton_type_message = "You are not wearing any baton";
+        }
+        llSay(PUBLIC_CHANNEL,"\n" + baton_type_message);
         doHttpRequest("stand_CRU.php", 
         ["action", "Update", "owner_key", llGetOwner(), "stand_key", llGetKey()
          ]);
