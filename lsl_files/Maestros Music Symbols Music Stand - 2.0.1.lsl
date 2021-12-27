@@ -251,6 +251,9 @@ default
             if (contains(name, "*Maestro*")){
                 baton_type_message = "Wearing Maestro Baton";
             }
+            if (contains(name, "*Free*")){
+                baton_type_message = "Wearing Free Baton";
+            }
             AttachedNames += [llList2String(temp,0)];
             ++i;
         }
