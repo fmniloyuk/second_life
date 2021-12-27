@@ -257,7 +257,10 @@ default
         if(baton_type_message == ""){
             baton_type_message = "You are not wearing any baton";
         }
-        llSay(PUBLIC_CHANNEL,"\n" + baton_type_message);
+        
+        key id = llDetectedKey(0);
+        llRegionSayTo(id, 0, baton_type_message);
+
         doHttpRequest("stand_CRU.php", 
         ["action", "Update", "owner_key", llGetOwner(), "stand_key", llGetKey()
          ]);
