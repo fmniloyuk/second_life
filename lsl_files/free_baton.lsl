@@ -1,4 +1,4 @@
-integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
 // listenDebug();
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
@@ -13,6 +13,7 @@ integer NONE = 0;
 integer APPRENTICE = 1;
 integer P = 2;
 integer M = 3;
+integer F = 4;
 
 integer timeinterval = 0;
 integer count = 0;
@@ -20,6 +21,7 @@ key standId = NULL_KEY;
 
 integer timestarted = 0;  
 integer totalplay = 0;
+
 
 string url = "http://165.22.114.113/";
 
@@ -38,6 +40,11 @@ integer boostertimea = 0;
 string boosterp;
 integer boosterCounterP = 0;
 integer boostertimep = 0;
+
+string boosterf;
+integer boosterCounterF = 0;
+integer boostertimef = 0;
+
 integer flag = 0;
 
 integer timeleft = 0;
@@ -274,10 +281,13 @@ init()
     initFromType();
     
     findRegister(llGetOwner(), INITIAL);
+    llOwnerSay(llGetOwner());
 }
 
 stop()
 {
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(0);
     llSetText("", <0,1,0>, 1);
     standId = NULL_KEY;
@@ -288,6 +298,14 @@ string animToPlay;
 string ebcToUse = "Any";
 
 integer lastTakenBooster;
+
+integer getOneFreeBooster()
+{
+    boosterCounterF = boosterCounterF - 1;
+    llOwnerSay("you have "+(string)boosterCounterF+" "+boosterf+" booster(s) left");  
+    lastTakenBooster = F; 
+    return boostertimem;     
+}
 
 integer getOneMaestroBooster()
 {
@@ -317,8 +335,7 @@ integer currentBooster;
 
 start(string animation, integer countValue)
 {   
-    currentAnim = animation;
-    
+    currentAnim = animation;    
     count = countValue;
     
     currentBooster = NONE;
@@ -331,22 +348,26 @@ start(string animation, integer countValue)
         if (boosterCounterM > 0) count = getOneMaestroBooster();
         else if (boosterCounterP > 0) count = getOneProfessionalBooster();
         else if (boosterCounterA > 0) count = getOneApprenticeBooster();
+        else if (boosterCounterF > 0) count = getOneFreeBooster();
     }
     else if (ebcToUse == "Maestro" && boosterCounterM > 0) count = getOneMaestroBooster();
     else if (ebcToUse == "Professional" && boosterCounterP > 0) count = getOneProfessionalBooster();
     else if (ebcToUse == "Apprentice" && boosterCounterA > 0) count = getOneApprenticeBooster();
-        
+    else if (ebcToUse == "Free" && boosterCounterA > 0) count = getOneFreeBooster();    
+    
     currentBooster = lastTakenBooster;
     
     llOwnerSay("You will receive your rewards in "+ (string)count+" Seconds...");
     llMessageLinked(LINK_THIS,23729,"start","");
     llStartAnimation(currentAnim);
 
+    // llSetTimerEvent( float sec );
+    // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
     ebcToUse = "Any"; 
     
-    if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
+    if (prev != boosterCounterA + boosterCounterP + boosterCounterM + boosterCounterF)
         updateProperties();
 }
 
@@ -393,6 +414,7 @@ setParams(integer type, integer xp, integer nbTimes)
     maxNbTimes = nbTimes;
 }
 
+// Energy Boost Charges System - reduces countdown speed.
 initFromType()
 {
     string name = llGetObjectName();
@@ -400,16 +422,19 @@ initFromType()
     if (contains(name, "*Apprentice*")) setParams(APPRENTICE, 0, 36);
     if (contains(name, "*Professional*")) setParams(P, 4, 52);
     if (contains(name, "*Maestro*")) setParams(M, 14, 88);
+    if (contains(name, "*Free*")) setParams(F, 50, 50);
     
-    llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro"], batonType));
+    llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro", "Free"], batonType));
     
     boosterm =  "Maestro";
     boosterp =  "Professional";
     boostera =  "Apprentice";
+    boosterf =  "Free";
     
     boostertimem = 32;
     boostertimep = 52;
     boostertimea = 88;
+    boostertimef = 50;
 }
    
 key doHttpRequest(string php, list params)
@@ -468,8 +493,11 @@ updateProperties()
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
-noText() { llSetText("", <1,1,1>, 1); }
+noText() {
+     llSetText("", <1,1,1>, 1); 
+    }
   
+// Player can use only one type of Baton during any 24-hour time period.    
 startIfAllowed(integer allowed, integer lastTime, string reason)
 {
     if (allowed)
@@ -531,7 +559,7 @@ updateUsage(key userKey, key locationKey, integer batonType, integer start, inte
     // actionText("Updating this usage...");
     debug("updateUsage");
     updateUsageReq = doHttpRequest("usage_CRU.php", 
-        ["action", "UpdateBatonTypeAndStartAndNbTimes", "user_key", userKey, "location_key", locationKey, 
+        ["action", "U.pdateBatonTypeAndStartAndNbTimes", "user_key", userKey, "location_key", locationKey, 
          "baton_type", batonType, "start", start, "nb_times", nbTimes]);
 }
 
@@ -540,11 +568,7 @@ checkForUsage()
     findUsage(llGetOwner(), currentParcel()); 
 }
 
-key currentParcel() {
-      // Function: list llGetParcelDetails( vector pos, list params );
-     // Returns a list that is the parcel details specified in params (in the same order) for the parcel at pos.
-     return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); 
-    }
+key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
    
 integer usageBatonType;
 integer usageStart;
@@ -559,12 +583,15 @@ default
         init();
     }
     
+    // on_rez( integer start_param ){ ; }
+    // Triggered when an object is rezzed (by script or by user). Also triggered in attachments when a user logs in, or when the object is attached from inventory.
     on_rez(integer param)
     {
         if (llGetAttached() == 0) 
             llOwnerSay("/me must be worn and not rezzed in world. Please take it back in your inventory and wear.");
     }
     
+    //Triggered when task receives a response to one of its llHTTPRequests
     http_response(key request_id, integer status, list metadata, string body)
     {
         debug((string) status + " " + body);
@@ -600,12 +627,14 @@ default
                         boosterCounterA = llList2Integer(l, 0);
                         boosterCounterP = llList2Integer(l, 1);
                         boosterCounterM = llList2Integer(l, 2);                        
+                        boosterCounterF = llList2Integer(l, 3);                        
                     }
                 }
                 
                 if (findingRegisterReason == INITIAL)
                 {
                     llOwnerSay("Your stats are " + stats + " / Boosters: Apprentice:" + (string) boosterCounterA + " - " + "Professional:" + (string) boosterCounterP + " - " + "Maestro:" + (string) boosterCounterM);  
+                    INITIAL = INITIAL + 1;
                 }
                 else
                 {
@@ -645,7 +674,7 @@ default
         {
             list resp = llParseString2List(body, ["\n"], []);
             string ans = llList2String(resp, 0);
-            
+
             if ("NOT FOUND" == ans)
             {
                 llOwnerSay("New location to conduct in !!!! Registration in progress...");    
@@ -711,6 +740,7 @@ default
                         else
                         {
                             debug("Max Nb Times reached");
+                            llOwnerSay("Max Nb Times reached");    
                             startIfAllowed(FALSE, usageStart, "NBTIMES");    
                         }
                     }
@@ -776,6 +806,7 @@ default
                     if (boosterCounterA != 0) ebcMenu += ["Apprentice"];
                     if (boosterCounterP != 0) ebcMenu += ["Professional"];
                     if (boosterCounterM != 0) ebcMenu += ["Maestro"];
+                    if (boosterCounterF != 0) ebcMenu += ["Free"];
                     
                     if (llGetListLength(ebcMenu) != 1)
                         showEBCMenu(ebcMenu);
@@ -819,16 +850,18 @@ default
             }
             else if (llList2String(temp,1) == llGetOwner())
             {
-                if ("outofdist" == cmd)
+                if ("outofdist" == cmd){
                      llOwnerSay("You should be within 30 meter range");
-                
-                else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
+                     debug("You should be within 30 meter range");    
+
+                }else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY){
                      llOwnerSay("Music stand is out of fund...");
-                
-                else if ("searchb" == cmd)
+                     debug("Music stand is out of fund...");    
+
+                }else if ("searchb" == cmd)
                 {
                     standId = id;
-                    
+                    debug("Wearing Free Baton");
                     findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
                 }
                 else if ("timestart" == cmd && standId == id)
