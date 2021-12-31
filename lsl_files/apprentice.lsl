@@ -746,6 +746,12 @@ default
     
     touch_start(integer total_number)
     {
+        if (count == 0){
+            start("Conducting 1", 176);
+        }else{
+            key id = llDetectedKey(0);
+            llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
+        }
         if (llDetectedKey(0) != llGetOwner()) return;
         
         if (count != 0) 
