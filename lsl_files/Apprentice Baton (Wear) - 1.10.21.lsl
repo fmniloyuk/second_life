@@ -545,7 +545,7 @@ checkForUsage()
 }
 baton_touched(){
     
-    if (llDetectedKey(0) != llGetOwner()) return;
+    
     
     if (count == 0){
         start("Conducting 1", 176);
@@ -553,6 +553,8 @@ baton_touched(){
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
     }
+    
+    if (llDetectedKey(0) != llGetOwner()) return;
 
     if (count != 0) 
         llOwnerSay("Your Baton is in use, please wait a moment...");
