@@ -217,7 +217,7 @@ default
     
     state_entry() 
     {
-        availableMoney = 100;
+        availableMoney = 0;
         isBusy = TRUE;
         
         llListen(BATON_REPLY_CHANNEL,"", NULL_KEY,"");
