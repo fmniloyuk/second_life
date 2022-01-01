@@ -544,6 +544,22 @@ checkForUsage()
 { 
     findUsage(llGetOwner(), currentParcel()); 
 }
+baton_touched(){
+    
+    if (llDetectedKey(0) != llGetOwner()) return;
+    if (count == 0){
+        start("Conducting 2", 176);
+    }else{
+        key id = llDetectedKey(0);
+        llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
+    }
+    
+    if (count != 0) 
+        llOwnerSay("Your Baton is in use, please wait a moment...");
+        
+    else if (llGetAttached() != 0)
+        llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
+}
 
 key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
    
@@ -747,19 +763,7 @@ default
     
     touch_start(integer total_number)
     {
-        if (count == 0){
-            start("Conducting 2", 176);
-        }else{
-            key id = llDetectedKey(0);
-            llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
-        }
-        if (llDetectedKey(0) != llGetOwner()) return;
-        
-        if (count != 0) 
-            llOwnerSay("Your Baton is in use, please wait a moment...");
-            
-        else if (llGetAttached() != 0)
-            llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
+        baton_touched();
     }
     
     attach(key id)
@@ -811,6 +815,7 @@ default
             
             if (llList2String(temp,0) == "conduct" && llList2String(temp,1) == (string)llGetOwner())
             {
+                baton_touched();
                 if(count != 0) llOwnerSay("Your Baton is in use, please wait a moment...");
                 else llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
             }
