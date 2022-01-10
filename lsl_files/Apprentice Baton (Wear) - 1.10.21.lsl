@@ -282,7 +282,7 @@ stop()
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(0);
     llSetText("", <0,1,0>, 1);
-    standId = NULL_KEY;
+    // standId = NULL_KEY;
 }
 
 string currentAnim;
@@ -551,7 +551,7 @@ baton_touched(){
     
     // check if the id is not null
     // get funds of the music stand from the id
-    // if ()
+    
     if (count == 0){
         start("Conducting 1", 10);
     }else{
