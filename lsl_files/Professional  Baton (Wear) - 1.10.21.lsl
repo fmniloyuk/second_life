@@ -53,7 +53,7 @@ integer timercount = 0;
 integer boosterflag = 0;
 list MonthNameList = [  "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
-integer allowed_conduct = FALSE;
+integer allowed_conduct = TRUE;
 string allowed_conduct_reason = "";
 // This leap year test works for all years from 1901 to 2099 (yes, including 2000)
 // Which is more than enough for UnixTime computations, which only operate over the range [1970, 2038].  (Omei Qunhua)

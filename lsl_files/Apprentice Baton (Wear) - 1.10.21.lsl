@@ -53,7 +53,7 @@ integer boosterflag = 0;
 list MonthNameList = [  "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
 
-integer allowed_conduct = FALSE;
+integer allowed_conduct = TRUE;
 string allowed_conduct_reason = ""; 
 // This leap year test works for all years from 1901 to 2099 (yes, including 2000)
 // Which is more than enough for UnixTime computations, which only operate over the range [1970, 2038].  (Omei Qunhua)
@@ -574,7 +574,7 @@ baton_touched(){
     // get funds of the music stand from the id
     
     if (count == 0){
-        start("Conducting 1", 176);
+        start("Conducting 1", 5);
     }else{
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
