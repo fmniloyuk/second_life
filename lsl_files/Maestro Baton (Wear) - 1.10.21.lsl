@@ -53,6 +53,7 @@ integer timercount = 0;
 integer boosterflag = 0;
 list MonthNameList = [  "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
+integer allowed_conduct = TRUE;
  
 // This leap year test works for all years from 1901 to 2099 (yes, including 2000)
 // Which is more than enough for UnixTime computations, which only operate over the range [1970, 2038].  (Omei Qunhua)
@@ -481,6 +482,7 @@ noText() {
 // Player can use only one type of Baton during any 24-hour time period.    
 startIfAllowed(integer allowed, integer lastTime, string reason)
 {
+    allowed_conduct = allowed;
     if (allowed)
     {
         llOwnerSay("You activated Conduct with your Baton, please wait and see what your rewards will be...");
@@ -550,6 +552,9 @@ checkForUsage()
 }
 baton_touched()
 {
+    if(!allowed_conduct){
+        return;
+    }
     
     key batonPlayer = llDetectedKey(0);
 
