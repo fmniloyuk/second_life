@@ -686,6 +686,9 @@ default
                 }
                 
                 availableMoney = availableMoney - reward*1000;
+                if(availableMoney<0){
+                    availableMoney = 0;
+                }
                 memberkey = (key)llList2String(temp,1);
                 
                 debug("Experience Before: " + (string) experience);
