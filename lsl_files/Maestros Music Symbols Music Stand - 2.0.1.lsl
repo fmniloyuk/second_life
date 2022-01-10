@@ -85,7 +85,7 @@ integer STAND_TO_VOTE_CHANNEL = 202110012;
 //integer amount = 0;
 integer CHANNEL = 0;
 integer RENAME_CHANNEL = 0; 
-float availableMoney = 100;
+float availableMoney = 0;
 integer messageflag = 0;
 key mowner = "e53a44de-09d6-438c-949e-ecf79104fee3";
 key taxowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
@@ -154,7 +154,10 @@ hover()
 {
     llSetText(standname+" \n Level One \n x"+
         (string)Multiplier+" payout \n"
-        +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$",<1,1,1>,1);    
+        +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$",<1,1,1>,1);
+        llSetObjectDesc(standname+" \n Level One \n x"+
+        (string)Multiplier+" payout \n"
+        +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$");            
 }
 
 init()
