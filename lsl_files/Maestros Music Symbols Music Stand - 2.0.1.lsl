@@ -155,9 +155,7 @@ hover()
     llSetText(standname+" \n Level One \n x"+
         (string)Multiplier+" payout \n"
         +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$",<1,1,1>,1);
-        llSetObjectDesc(standname+" \n Level One \n x"+
-        (string)Multiplier+" payout \n"
-        +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$");            
+        llSetObjectDesc((string)llFloor(availableMoney));            
 }
 
 init()

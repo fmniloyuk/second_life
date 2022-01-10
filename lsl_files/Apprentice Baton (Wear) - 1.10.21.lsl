@@ -546,18 +546,9 @@ checkForUsage()
 baton_touched(){
     key id = llDetectedKey(0);
     llRegionSayTo(id, 0, "standId..."+(string)standId);
-    list details = llGetObjectDetails(standId, ([OBJECT_NAME, OBJECT_DESC,
-                            OBJECT_POS, OBJECT_ROT, OBJECT_VELOCITY,
-                            OBJECT_OWNER, OBJECT_GROUP, OBJECT_CREATOR]));
-      llShout(PUBLIC_CHANNEL, "UUID: " + (string)id
-                    + "\nName: "          + llList2String(details, 0)
-                    + "\nDescription: "  + llList2String(details, 1)
-                    + "\nPosition: "      + llList2String(details, 2)
-                    + "\nRotation: "       + llList2String(details, 3)
-                    + "\nVelocity: "       + llList2String(details, 4)
-                    + "\nOwner: "          + llList2String(details, 5)
-                    + "\nGroup: "          + llList2String(details, 6)
-                    + "\nCreator: "        + llList2String(details, 7));
+    list details = llGetObjectDetails(standId, ([OBJECT_DESC]));
+    llRegionSayTo(id, 0, "available money..."+(string)llList2String(details, 0));
+    
     // check if the id is not null
     // get funds of the music stand from the id
     // if ()
