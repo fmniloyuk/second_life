@@ -685,7 +685,7 @@ default
                     knowldge = llList2String(performancename,randtypesel);
                 }
                 
-                availableMoney = availableMoney - reward*100;
+                availableMoney = availableMoney - reward*1000;
                 memberkey = (key)llList2String(temp,1);
                 
                 debug("Experience Before: " + (string) experience);
