@@ -562,7 +562,7 @@ baton_touched(){
     // get funds of the music stand from the id
     
     if (count == 0){
-        start("Conducting 1", 10);
+        start("Conducting 1", 176);
     }else{
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
