@@ -285,7 +285,7 @@ default
         }
        else
        {           
-            if (availableMoney < 1)
+            if (availableMoney <= 0)
             {
                 llRegionSayTo(llDetectedKey(0),0,"Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
                  llSleep(1);
@@ -546,7 +546,7 @@ default
             {
                 key batonPlayer = llList2String(temp,1);
                 
-                if (availableMoney < 1)
+                if (availableMoney <= 0)
                     llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
                 else
                 {

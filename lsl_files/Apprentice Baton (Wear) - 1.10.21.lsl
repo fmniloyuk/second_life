@@ -548,7 +548,7 @@ baton_touched(){
     // llRegionSayTo(id, 0, "standId..."+(string)standId);
     list details = llGetObjectDetails(standId, ([OBJECT_DESC]));
     // llRegionSayTo(id, 0, "available money..."+(string)llList2String(details, 0));
-    if((integer)llList2String(details, 0) == 0) {
+    if((float)llList2String(details, 0) == 0) {
         key batonPlayer = llDetectedKey(0);
         llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
         return;
