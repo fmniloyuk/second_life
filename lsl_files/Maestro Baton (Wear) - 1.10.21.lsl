@@ -53,7 +53,7 @@ integer timercount = 0;
 integer boosterflag = 0;
 list MonthNameList = [  "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
-integer allowed_conduct = TRUE;
+integer allowed_conduct = FALSE;
  
 // This leap year test works for all years from 1901 to 2099 (yes, including 2000)
 // Which is more than enough for UnixTime computations, which only operate over the range [1970, 2038].  (Omei Qunhua)
@@ -508,10 +508,14 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
             llOwnerSay("Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt));
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"maxreached"+","+(string)llGetOwner()+","+""); 
             llOwnerSay("Time remaining: "+ConvertWallclockToTime((timercount - llGetUnixTime())));
+            allowed_conduct_reason = "Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt);
         }
-        else
+        else{
+            allowed_conduct_reason = "Sorry but your started to conduct here with an other baton's type. " +
+            "You can only use one baton per 24 hours per conduct locations.";
             llOwnerSay("Sorry but your started to conduct here with an other baton's type. " +
                        "You can only use one baton per 24 hours per conduct locations.");
+        }
                        
         noText();
     }    
@@ -553,6 +557,7 @@ checkForUsage()
 baton_touched()
 {
     if(!allowed_conduct){
+        llOwnerSay(allowed_conduct_reason);
         return;
     }
     
