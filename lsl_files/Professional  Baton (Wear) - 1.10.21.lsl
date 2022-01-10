@@ -283,7 +283,7 @@ stop()
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(0);
     llSetText("", <0,1,0>, 1);
-    standId = NULL_KEY;
+    // standId = NULL_KEY;
 }
 
 string currentAnim;
@@ -546,7 +546,20 @@ checkForUsage()
 }
 baton_touched(){
     
-    
+    key batonPlayer = llDetectedKey(0);
+
+    if(standId == NULL_KEY){
+        llRegionSayTo(batonPlayer, 0, "Please click on the music stand");
+        return;
+    }
+    key id = llDetectedKey(0);
+    // llRegionSayTo(id, 0, "standId..."+(string)standId);
+    list details = llGetObjectDetails(standId, ([OBJECT_DESC]));
+    // llRegionSayTo(id, 0, "available money..."+(string)llList2String(details, 0));
+    if((float)llList2String(details, 0) == 0.0) {
+        llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
+        return;
+    }
     if (count == 0){
         start("Conducting 2", 176);
     }else{
