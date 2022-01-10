@@ -551,6 +551,7 @@ baton_touched(){
     if((integer)llList2String(details, 0) == 0) {
         key batonPlayer = llDetectedKey(0);
         llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
+        return;
     }
     // check if the id is not null
     // get funds of the music stand from the id
