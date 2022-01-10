@@ -154,7 +154,7 @@ hover()
 {
     llSetText(standname+" \n Level One \n x"+
         (string)Multiplier+" payout \n"
-        +" and \n Music Stand has "+(string)llFloor(availableMoney)+" L$",<1,1,1>,1);
+        +" and \n Music Stand has "+(string)availableMoney+" L$",<1,1,1>,1);
     llSetObjectDesc((string)llFloor(availableMoney));            
 }
 
@@ -685,7 +685,7 @@ default
                     knowldge = llList2String(performancename,randtypesel);
                 }
                 
-                availableMoney = availableMoney - reward*1000;
+                availableMoney = availableMoney - reward;
                 if(availableMoney<0){
                     availableMoney = 0;
                 }
