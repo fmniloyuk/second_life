@@ -1,6 +1,6 @@
 <?php    
 
 $hostname = "localhost";
-$username = "root";
-$password = "Peergrid@123";
+$username = "admin";
+$password = "london2022#SL";
 $database = "bhicxumy";
