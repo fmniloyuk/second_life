@@ -3,7 +3,7 @@
 
 integer HUD_CHANNEL = 2021091821;
 
-string url = "http://165.22.114.113/";
+string url = "http://178.128.46.187/";
 
 key balancekey;
 integer landmark = 0;

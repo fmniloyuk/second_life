@@ -22,7 +22,7 @@ integer timestarted = 0;
 integer totalplay = 0;
 
 
-string url = "http://165.22.114.113/";
+string url = "http://178.128.46.187/";
 
 key rezreq;
 
