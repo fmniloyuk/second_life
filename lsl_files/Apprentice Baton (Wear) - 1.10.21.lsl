@@ -492,6 +492,7 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"ihave"+","+(string)llGetOwner()+","+"");
                     
         timestarted = llGetUnixTime();
+        // start("Conducting 1", 5);
     }
     else
     {
@@ -552,10 +553,10 @@ checkForUsage()
     findUsage(llGetOwner(), currentParcel()); 
 }
 baton_touched(){
-    if(!allowed_conduct){
-        llOwnerSay(allowed_conduct_reason);
-        return;
-    }
+    // if(!allowed_conduct){
+    //     llOwnerSay(allowed_conduct_reason);
+    //     return;
+    // }
     key batonPlayer = llDetectedKey(0);
 
     if(standId == NULL_KEY){
@@ -574,7 +575,7 @@ baton_touched(){
     // get funds of the music stand from the id
     
     if (count == 0){
-        start("Conducting 1", 5);
+        findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
     }else{
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
@@ -912,7 +913,6 @@ default
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             
             stop();
-            findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
         }
         else
         {

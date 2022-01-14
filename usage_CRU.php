@@ -35,7 +35,7 @@ if ("Create" == $action)
         ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times.""."')";
         
         if ($conn->query($sql) === TRUE) {
-          echo "Baton is updated successfully...";
+          echo "CREATED";
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
         }   
@@ -84,7 +84,7 @@ elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){
         ('".$user_key."', '".$location_key."','".$baton_type."','".$start."','".$nb_times."')";
         
         if ($conn->query($sql) === TRUE) {
-          echo "Baton usage is inserted";
+          echo "CREATED";
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -92,7 +92,7 @@ elseif("UpdateBatonTypeAndStartAndNbTimes" == $action){
         //updating exsisting record
         $sql = "UPDATE usage_cru SET baton_type='".$baton_type."', start='".$start."', nb_times='".$nb_times."' WHERE user_key='".$user_key."' and location_key='".$location_key."'";
         if ($conn->query($sql) === TRUE) {
-          echo "Baton is updated successfully...";
+          echo "UPDATED";
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
         }

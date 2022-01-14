@@ -496,6 +496,7 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"ihave"+","+(string)llGetOwner()+","+"");
                     
         timestarted = llGetUnixTime();
+        // start("Jazz conductor", 5);
     }
     else
     {
@@ -556,10 +557,10 @@ checkForUsage()
 }
 baton_touched()
 {
-    if(!allowed_conduct){
-        llOwnerSay(allowed_conduct_reason);
-        return;
-    }
+    // if(!allowed_conduct){
+    //     llOwnerSay(allowed_conduct_reason);
+    //     return;
+    // }
     
     key batonPlayer = llDetectedKey(0);
 
@@ -576,7 +577,7 @@ baton_touched()
         return;
     }
     if (count == 0){
-        start("Jazz conductor", 176);
+        findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
     }else{
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
@@ -914,7 +915,6 @@ default
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             stop();
-            findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
         }
         else
         {
