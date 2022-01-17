@@ -885,7 +885,7 @@ default
                     boosterflag = 0;
                     count = timeinterval;
                     
-                    if (batonType == APPRENTICE) start("Conducting 1", count);
+                    if (batonType == M) start("Jazz conductor", count);
                     else showAnimationMenu(count);                                        
                 }
             }

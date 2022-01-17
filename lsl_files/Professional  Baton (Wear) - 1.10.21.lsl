@@ -879,7 +879,7 @@ default
                     boosterflag = 0;
                     count = timeinterval;
                     
-                    if (batonType == APPRENTICE) start("Conducting 1", count);
+                    if (batonType == P) start("Conducting 2", count);
                     else showAnimationMenu(count);                                        
                 }
             }
