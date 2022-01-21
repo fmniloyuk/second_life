@@ -556,6 +556,7 @@ baton_touched(){
     //     llOwnerSay(allowed_conduct_reason);
     //     return;
     // }
+    if (llDetectedKey(0) != llGetOwner()) return;
     key batonPlayer = llDetectedKey(0);
 
     if(standId == NULL_KEY){
