@@ -579,7 +579,7 @@ baton_touched(){
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
     }
     
-    if (llDetectedKey(0) != llGetOwner()) return;
+    // if (llDetectedKey(0) != llGetOwner()) return;
 
     if (count != 0) 
         llOwnerSay("Your Baton is in use, please wait a moment...");
