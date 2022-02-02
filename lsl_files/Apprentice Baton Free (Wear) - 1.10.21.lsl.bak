@@ -42,7 +42,7 @@ integer boosterCounterP = 0;
 integer boostertimep = 0;
 
 string boosterf;
-integer boosterCounterF = 0;
+integer boosterCounterF = 50;
 integer boostertimef = 0;
 
 integer flag = 0;

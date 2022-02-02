@@ -14,12 +14,14 @@
 
 
 ## 2. Baton.
-To play the game, players are given a free Apprentice Baton, which is worn when selected from lnventory. 50 free Apprentice Energy Boost Charges are also included.
-On touching any baton, the Music Stand detects whether the owner has purchased an Energy Boost Charge, if no purchase then the countdown is a full 176 seconds before payout and reward (88 x2).
-An avatar should be no more than 30 metors awny from a Music Stand when clicking the Baton.
-Each time the Baton is first clicked the following message should appear;-
+1. To play the game, players are given a free Apprentice Baton, 
+2. 50 free Apprentice Energy Boost Charges are also included.
+3. On touching any baton, the Music Stand detects whether the owner has purchased an Energy Boost Charge, 
+4. if no purchase then the countdown is a full 176 seconds before payout and reward (88 x2).
+5. An avatar should be no more than 30 metors awny from a Music Stand when clicking the Baton.
+6. Each time the Baton is first clicked the following message should appear;-
 "You have clicked your Baton, please wait and see what your rewards will bs... .."
-If an avatar clicks the Baton while the countdoirun is in progress
+7. If an avatar clicks the Baton while the countdoirun is in progress
 "Your Baton is in use. please wait a moment........"
 Note - the baton should show the countdown to payout and reward, not lhe Music Stand.
 

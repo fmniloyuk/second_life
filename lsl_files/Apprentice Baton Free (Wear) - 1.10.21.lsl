@@ -1,4 +1,4 @@
-integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
 // listenDebug();
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
@@ -20,7 +20,6 @@ key standId = NULL_KEY;
 
 integer timestarted = 0;  
 integer totalplay = 0;
-
 
 string url = "http://178.128.46.187/";
 
@@ -53,8 +52,9 @@ integer timercount = 0;
 integer boosterflag = 0;
 list MonthNameList = [  "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                         "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
+
 integer allowed_conduct = TRUE;
-string allowed_conduct_reason = "";
+string allowed_conduct_reason = ""; 
 // This leap year test works for all years from 1901 to 2099 (yes, including 2000)
 // Which is more than enough for UnixTime computations, which only operate over the range [1970, 2038].  (Omei Qunhua)
 integer LeapYear( integer year)
@@ -276,7 +276,6 @@ init()
     initFromType();
     
     findRegister(llGetOwner(), INITIAL);
-    llOwnerSay(llGetOwner());
 }
 
 stop()
@@ -322,7 +321,8 @@ integer currentBooster;
 
 start(string animation, integer countValue)
 {   
-    currentAnim = animation;    
+    currentAnim = animation;
+    
     count = countValue;
     
     currentBooster = NONE;
@@ -399,7 +399,6 @@ setParams(integer type, integer xp, integer nbTimes)
     maxNbTimes = nbTimes;
 }
 
-// Energy Boost Charges System - reduces countdown speed.
 initFromType()
 {
     string name = llGetObjectName();
@@ -475,11 +474,8 @@ updateProperties()
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
-noText() {
-     llSetText("", <1,1,1>, 1); 
-    }
+noText() { llSetText("", <1,1,1>, 1); }
   
-// Player can use only one type of Baton during any 24-hour time period.    
 startIfAllowed(integer allowed, integer lastTime, string reason)
 {
     allowed_conduct = allowed;
@@ -496,7 +492,7 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"ihave"+","+(string)llGetOwner()+","+"");
                     
         timestarted = llGetUnixTime();
-        // start("Jazz conductor", 5);
+        // start("Conducting 1", 5);
     }
     else
     {
@@ -517,6 +513,7 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
             llOwnerSay("Sorry but your started to conduct here with an other baton's type. " +
                        "You can only use one baton per 24 hours per conduct locations.");
         }
+            
                        
         noText();
     }    
@@ -555,13 +552,12 @@ checkForUsage()
 { 
     findUsage(llGetOwner(), currentParcel()); 
 }
-baton_touched()
-{
+baton_touched(){
     // if(!allowed_conduct){
     //     llOwnerSay(allowed_conduct_reason);
     //     return;
     // }
-    // if (llDetectedKey(0) != llGetOwner()) return;
+    if (llDetectedKey(0) != llGetOwner()) return;
     key batonPlayer = llDetectedKey(0);
 
     if(standId == NULL_KEY){
@@ -576,19 +572,25 @@ baton_touched()
         llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
         return;
     }
+    // check if the id is not null
+    // get funds of the music stand from the id
+    
     if (count == 0){
         findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
     }else{
         key id = llDetectedKey(0);
         llRegionSayTo(id, 0, "Your Baton is in use, please wait a moment...");
     }
-    // if (llDetectedKey(0) != llGetOwner()) return;
+    
+    
+
     if (count != 0) 
         llOwnerSay("Your Baton is in use, please wait a moment...");
         
     else if (llGetAttached() != 0)
         llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
 }
+
 key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
    
 integer usageBatonType;
@@ -654,7 +656,6 @@ default
                 if (findingRegisterReason == INITIAL)
                 {
                     llOwnerSay("Your stats are " + stats + " / Boosters: Apprentice:" + (string) boosterCounterA + " - " + "Professional:" + (string) boosterCounterP + " - " + "Maestro:" + (string) boosterCounterM);  
-                    INITIAL = INITIAL + 1;
                 }
                 else
                 {
@@ -694,7 +695,7 @@ default
         {
             list resp = llParseString2List(body, ["\n"], []);
             string ans = llList2String(resp, 0);
-
+            
             if ("NOT FOUND" == ans)
             {
                 llOwnerSay("New location to conduct in !!!! Registration in progress...");    
@@ -760,7 +761,6 @@ default
                         else
                         {
                             debug("Max Nb Times reached");
-                            llOwnerSay("Max Nb Times reached");    
                             startIfAllowed(FALSE, usageStart, "NBTIMES");    
                         }
                     }
@@ -793,7 +793,7 @@ default
     
     touch_start(integer total_number)
     {
-     baton_touched();   
+        baton_touched();
     }
     
     attach(key id)
@@ -864,18 +864,16 @@ default
             }
             else if (llList2String(temp,1) == llGetOwner())
             {
-                if ("outofdist" == cmd){
+                if ("outofdist" == cmd)
                      llOwnerSay("You should be within 30 meter range");
-                     debug("You should be within 30 meter range");    
-
-                }else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY){
+                
+                else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
                      llOwnerSay("Music stand is out of fund...");
-                     debug("Music stand is out of fund...");    
-
-                }else if ("searchb" == cmd)
+                
+                else if ("searchb" == cmd)
                 {
                     standId = id;
-                    debug("Wearing Maestros Baton");
+                    debug("Wearing Apprentice Baton");
                     // findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
                 }
                 else if ("timestart" == cmd && standId == id)
@@ -885,7 +883,7 @@ default
                     boosterflag = 0;
                     count = timeinterval;
                     
-                    if (batonType == M) start("Jazz conductor", count);
+                    if (batonType == APPRENTICE) start("Conducting 1", count);
                     else showAnimationMenu(count);                                        
                 }
             }
@@ -914,6 +912,7 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
+            
             stop();
         }
         else
