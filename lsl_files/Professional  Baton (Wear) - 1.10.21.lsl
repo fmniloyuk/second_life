@@ -551,12 +551,14 @@ checkForUsage()
 { 
     findUsage(llGetOwner(), currentParcel()); 
 }
-baton_touched(){
+baton_touched(integer source){
     // if(!allowed_conduct){
     //     llOwnerSay(allowed_conduct_reason);
     //     return;
     // }
-    // if (llDetectedKey(0) != llGetOwner()) return;
+    if(source==0){
+        if (llDetectedKey(0) != llGetOwner()) return;
+    }
     key batonPlayer = llDetectedKey(0);
 
     if(standId == NULL_KEY){
@@ -790,7 +792,7 @@ default
     
     touch_start(integer total_number)
     {
-        baton_touched();
+        baton_touched(0);
     }
     
     attach(key id)
@@ -842,7 +844,7 @@ default
             
             if (llList2String(temp,0) == "conduct" && llList2String(temp,1) == (string)llGetOwner())
             {
-                baton_touched();
+                baton_touched(1);
                 if(count != 0) llOwnerSay("Your Baton is in use, please wait a moment...");
                 else llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
             }
