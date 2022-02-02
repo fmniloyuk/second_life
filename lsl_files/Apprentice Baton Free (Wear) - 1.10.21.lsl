@@ -32,7 +32,7 @@ integer boosterCounterM = 0;
 integer boostertimem = 0;
 
 string boostera;
-integer boosterCounterA = 0;
+integer boosterCounterA = 50;
 integer boostertimea = 0;
 
 string boosterp;
