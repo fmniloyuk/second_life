@@ -259,7 +259,7 @@ default
             ++i;
         }
         if(baton_type_message == ""){
-            baton_type_message = "You are not wearing any baton";
+            baton_type_message = "You are not wearing any baton. You can download a Free Apprentice Baton from the marketplace. The download link will be available soon.";
         }
         
         key id = llDetectedKey(0);
