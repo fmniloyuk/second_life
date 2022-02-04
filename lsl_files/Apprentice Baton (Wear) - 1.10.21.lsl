@@ -557,11 +557,15 @@ baton_touched(integer source){
     //     llOwnerSay(allowed_conduct_reason);
     //     return;
     // }
-    if(source==0){
-        if (llDetectedKey(0) != llGetOwner()) return;
-    }
     key batonPlayer = llDetectedKey(0);
-
+    if(source==0){
+        if (llDetectedKey(0) != llGetOwner()){
+            llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton……");    
+            llRegionSayTo(batonPlayer, 0, "This Apprentice Baton is owned by "+llGetDisplayName(llGetOwner()));    
+            return;
+        } 
+    }
+    
     if(standId == NULL_KEY){
         llRegionSayTo(batonPlayer, 0, "Please click on the music stand");
         return;

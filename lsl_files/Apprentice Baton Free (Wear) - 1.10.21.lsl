@@ -559,7 +559,10 @@ baton_touched(integer source){
     // }
     // soure 0 = baton, 1 = hud
     if(source==0){
-        if (llDetectedKey(0) != llGetOwner()) return;
+        if (llDetectedKey(0) != llGetOwner()){
+            llRegionSayTo(batonPlayer, 0, "Please click on the music stand");    
+            return;
+        } 
     }
     
     key batonPlayer = llDetectedKey(0);

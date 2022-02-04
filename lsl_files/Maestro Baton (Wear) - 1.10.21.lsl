@@ -562,7 +562,10 @@ baton_touched(integer source)
     //     return;
     // }
     if(source==0){
-        if (llDetectedKey(0) != llGetOwner()) return;
+        if (llDetectedKey(0) != llGetOwner()){
+            llRegionSayTo(batonPlayer, 0, "Please click on the music stand");    
+            return;
+        }
     }
     key batonPlayer = llDetectedKey(0);
 
