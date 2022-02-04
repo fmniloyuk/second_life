@@ -560,7 +560,7 @@ baton_touched(integer source){
     key batonPlayer = llDetectedKey(0);
     if(source==0){
         if (llDetectedKey(0) != llGetOwner()){
-            llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton……\nThis Apprentice Baton is owned by "+llGetDisplayName(llGetOwner()));    
+            llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton. This Apprentice Baton is owned by "+llGetDisplayName(llGetOwner()));    
             return;
         } 
     }

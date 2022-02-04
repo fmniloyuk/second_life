@@ -558,7 +558,7 @@ baton_touched(integer source){
     // }
     if(source==0){
         if (llDetectedKey(0) != llGetOwner()){
-            llRegionSayTo(batonPlayer, 0, "Please click on the music stand");    
+            llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton. This Professional Baton is owned by "+llGetDisplayName(llGetOwner()));    
             return;
         }
     }
