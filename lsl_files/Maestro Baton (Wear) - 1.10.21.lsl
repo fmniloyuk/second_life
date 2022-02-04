@@ -561,13 +561,14 @@ baton_touched(integer source)
     //     llOwnerSay(allowed_conduct_reason);
     //     return;
     // }
+    key batonPlayer = llDetectedKey(0);
     if(source==0){
         if (llDetectedKey(0) != llGetOwner()){
             llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton. This Maestro Baton is owned by "+llGetDisplayName(llGetOwner()));    
             return;
         }
     }
-    key batonPlayer = llDetectedKey(0);
+
 
     if(standId == NULL_KEY){
         llRegionSayTo(batonPlayer, 0, "Please click on the music stand");

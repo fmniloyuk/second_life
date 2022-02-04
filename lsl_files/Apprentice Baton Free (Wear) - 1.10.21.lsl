@@ -558,6 +558,7 @@ baton_touched(integer source){
     //     return;
     // }
     // soure 0 = baton, 1 = hud
+    key batonPlayer = llDetectedKey(0);
     if(source==0){
         if (llDetectedKey(0) != llGetOwner()){
             llRegionSayTo(batonPlayer, 0, "You have clicked another players Baton. This Free Apprentice Baton is owned by "+llGetDisplayName(llGetOwner()));    
@@ -565,7 +566,7 @@ baton_touched(integer source){
         } 
     }
     
-    key batonPlayer = llDetectedKey(0);
+
 
     if(standId == NULL_KEY){
         llRegionSayTo(batonPlayer, 0, "Please click on the music stand");
