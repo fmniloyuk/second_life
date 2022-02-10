@@ -405,7 +405,7 @@ initFromType()
 
     if (contains(name, "*Apprentice*")) setParams(APPRENTICE, 0, 36);
     if (contains(name, "*Professional*")) setParams(P, 4, 52);
-    if (contains(name, "*Maestro*")) setParams(M, 14, 88);
+    if (contains(name, "*Maestro*")) setParams(M, 14, 66);
     
     llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro"], batonType));
     
@@ -415,7 +415,7 @@ initFromType()
     
     boostertimem = 32;
     boostertimep = 52;
-    boostertimea = 88;
+    boostertimea = 66;
 }
    
 key doHttpRequest(string php, list params)
