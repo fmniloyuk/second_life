@@ -125,6 +125,24 @@ Caffeine
 
 
 
+## Feedback:
 
+1. Occasionally when changing from clicking on Baton to Conduct on HUD this message is output:- Underlined message where possible in .pdf document
+This Music Stand is busy.. try after some time...??
+
+2. Still Baton is able to be clicked when funds remain in Music Stand and countdown/animation is not activated but message is displayed
+Click No.20 underlined in .pdf output document
+
+3. A message needs to be displayed notifying players that there is not enough funds to give rewards.
+
+Example “Sorry there is not enough funds in this Music Stand, please locate another one….” Could be configured to Next Location Button on HUD and Web Page later on?
+
+4. I tried a test with another avatar and despite the Music Stand being set for 5 seconds, the countdown and animation was activated from 88 Seconds?
+
+Please see .pdf document with output
+
+If the Music Stand is set to integer timeinterval = 5; then the countdown should not be able to be activated?
+
+5. I have been testing the Apprentice Free Baton and noted an issue which needs to be solved please. When I detached from player and then selected wear again, the Apprentice Booster amount were reset to 50 when 18 had been used. The Apprentice Baton Free should only give one lot of 50 free Apprentice Energy Boosters. Please see attached .pdf for output.
 
 
