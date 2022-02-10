@@ -552,7 +552,7 @@ default
                 {
                     if (isBusy)
                     {
-                        llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
+                        // llRegionSayTo(batonPlayer,0,"This Music Stand is busy.. try after some time...");
                     }
                     else
                     {
