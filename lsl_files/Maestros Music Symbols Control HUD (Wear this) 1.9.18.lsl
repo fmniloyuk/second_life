@@ -22,7 +22,11 @@ default
         // Returns a string that is the name of link in link set
         string primName = llGetLinkName(llDetectedLinkNumber(0));
         
-        if ("CONDUCT" == primName)
+        if ("BATON" == primName)
+        {
+            // llRegionSay(HUD_CHANNEL, "conduct,"+(string)llGetOwner());
+        }
+        else if ("CONDUCT" == primName)
         {
             llRegionSay(HUD_CHANNEL, "conduct,"+(string)llGetOwner());
         }

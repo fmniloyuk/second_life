@@ -287,7 +287,7 @@ default
        {           
             if (availableMoney <= 0)
             {
-                llRegionSayTo(llDetectedKey(0),0,"Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
+                llRegionSayTo(llDetectedKey(0),0,"Sorry there is not enough funds in this Music Stand, please locate another one….");
                  llSleep(1);
             }
             else
@@ -547,7 +547,7 @@ default
                 key batonPlayer = llList2String(temp,1);
                 
                 if (availableMoney <= 0)
-                    llRegionSayTo(batonPlayer, 0, "Sorry this Music Stand is Out of funds, owner needs to pay more L$ into it");
+                    llRegionSayTo(batonPlayer, 0, "Sorry there is not enough funds in this Music Stand, please locate another one….");
                 else
                 {
                     if (isBusy)
@@ -570,7 +570,7 @@ default
             {
                 llRegionSayTo(id,BATON_CHANNEL,"outoffund"+","+(string)llList2String(temp,1));
                 if(autorefill == 1)
-                    llInstantMessage(llGetOwner(),"This Music Stand is out of funds, please right click Stand to pay in order to proceed.");
+                    llInstantMessage(llGetOwner(),"Sorry there is not enough funds in this Music Stand, please locate another one….");
             }
             else if (llList2String(temp,0)  == "ihave" && availableMoney >= minimumamount)
             {
