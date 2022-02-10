@@ -481,7 +481,6 @@ startIfAllowed(integer allowed, integer lastTime, string reason)
     allowed_conduct = allowed;
     if (allowed)
     {
-        llOwnerSay("You have clicked your Baton, please wait and see what your rewards will be...");
         if(boosterCounterM > 0)
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"ihave"+","+(string)llGetOwner()+","+boosterm);
         else if(boosterCounterP > 0)
@@ -885,7 +884,10 @@ default
                     boosterflag = 0;
                     count = timeinterval;
                     
-                    if (batonType == P) start("Conducting 2", count);
+                    if (batonType == P){
+                        llOwnerSay("You have clicked your Baton, please wait and see what your rewards will be...");
+                        start("Conducting 2", count);
+                    } 
                     else showAnimationMenu(count);                                        
                 }
             }
