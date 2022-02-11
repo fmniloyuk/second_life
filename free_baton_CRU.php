@@ -26,7 +26,7 @@ if ($action == "Read")
         if ($ebc<0)
             $ebc = 0;
         echo "free_ebc_count: ".$ebc;
-        $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_ke='".$baton_key."'";
+        $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_key='".$baton_key."'";
         $conn->query($sql);
     } else {
         $sql = "INSERT INTO free_baton (baton_key) VALUES ('".$baton_key."')";
