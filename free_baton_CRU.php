@@ -23,6 +23,8 @@ if ($action == "Read")
         // output data of each row
         $row = $result->fetch_assoc();
         $ebc = ((int)$row['ebc']) - 1;
+        if ($ebc<0)
+            $ebc = 0;
         echo "free_ebc_count: ".$ebc;
         $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_ke='".$baton_key."'";
         $conn->query($sql);
