@@ -18,28 +18,22 @@ $baton_key  = GetParam("baton_key");
 if ($action == "Read")
 {
     $sql = "SELECT * FROM free_baton WHERE baton_key='".$baton_key."'";
-    
-    if ($result=mysqli_query($conn,$sql))
-    {
-    // Return the number of rows in result set
-    $rowcount=mysqli_num_rows($result);
-    
-    //counting existing records
-    if($rowcount==0){
-        // insert return 50
-        $sql = "INSERT INTO free_baton (baton_id) VALUES ('".$baton_key."')";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        $row = $result->fetch_assoc();
+        $ebc = ((int)$row['ebc']) - 1;
+        echo "free_ebc_count: ".$ebc;
+        $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_ke='".$baton_key."'";
+        $conn->query($sql);
+    } else {
+        $sql = "INSERT INTO free_baton (baton_key) VALUES ('".$baton_key."')";
         if ($conn->query($sql) === TRUE) {
-            echo "Baton has been updated";
-          } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-          }
-    }else{
-                    // update ebc = ebc - 1
+            echo "free_ebc_count: 49";
+        }
     }
-    // Free result set
-    mysqli_free_result($result);
-    }else echo_error("During Baton Read");
-    
+
+    mysqli_free_result($result);    
     $stmt->close();
     
 }
