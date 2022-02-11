@@ -22,7 +22,7 @@ if ($action == "Read")
     if ($result->num_rows > 0) {
         // output data of each row
         $row = $result->fetch_assoc();
-        $ebc = ((int)$row['ebc']) - 1;
+        $ebc = $row['ebc'] - 1;
         if ($ebc<0)
             $ebc = 0;
         echo "free_ebc_count: ".$ebc;
