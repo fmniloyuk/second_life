@@ -12,7 +12,7 @@ require_once("config.php");
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection error!");
 
 $action = GetParam("action");
-
+$type = GetParam("type");
 $baton_key  = GetParam("baton_key");
 
 if ($action == "Read")
@@ -22,16 +22,18 @@ if ($action == "Read")
     if ($result->num_rows > 0) {
         // output data of each row
         $row = $result->fetch_assoc();
-        $ebc = $row['ebc'] - 1;
+        if ($type == 'update'){
+            $ebc = $row['ebc'] - 1;
+        }
         if ($ebc<0)
             $ebc = 0;
-        echo "free_ebc_count: ".$ebc;
+        echo $ebc;
         $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_key='".$baton_key."'";
         $conn->query($sql);
     } else {
         $sql = "INSERT INTO free_baton (baton_key) VALUES ('".$baton_key."')";
         if ($conn->query($sql) === TRUE) {
-            echo "free_ebc_count: 49";
+            echo 50;
         }
     }
 

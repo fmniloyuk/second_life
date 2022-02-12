@@ -32,7 +32,7 @@ integer boosterCounterM = 0;
 integer boostertimem = 0;
 
 string boostera;
-integer boosterCounterA = 50;
+integer boosterCounterA = 0;
 integer boostertimea = 0;
 
 string boosterp;
@@ -398,7 +398,7 @@ setParams(integer type, integer xp, integer nbTimes)
     XPImprovment = xp;
     maxNbTimes = nbTimes;
 }
-
+key free_baton_ebc;
 initFromType()
 {
     string name = llGetObjectName();
@@ -409,6 +409,9 @@ initFromType()
     
     llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro"], batonType));
     
+    free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
+        ["action", "Read", "baton_key", llDetectedKey(0)]);
+
     boosterm =  "Maestro";
     boosterp =  "Professional";
     boostera =  "Apprentice";
@@ -673,7 +676,10 @@ default
 
             }
         }
-        
+        if (free_baton_ebc == request_id) {
+            list resp = llParseString2List(body, ["\n"], []);
+            boosterCounterA = (integer)llList2String(resp, 0);
+        }
         if (createRegisterReq == request_id)
         {
             list resp = llParseString2List(body, ["\n"], []);
@@ -892,6 +898,7 @@ default
                     
                     if (batonType == APPRENTICE){
                         llOwnerSay("You have clicked your Baton, please wait and see what your rewards will be...");
+                        free_baton_ebc = doHttpRequest("free_baton_CRU.php", ["action", "Read", "baton_key", llDetectedKey(0)]);
                         start("Conducting 1", count);
                     } 
                     else showAnimationMenu(count);                                        
