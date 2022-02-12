@@ -22,6 +22,7 @@ if ($action == "Read")
     if ($result->num_rows > 0) {
         // output data of each row
         $row = $result->fetch_assoc();
+        $ebc = $row['ebc'];
         if ($type == 'update'){
             $ebc = $row['ebc'] - 1;
         }

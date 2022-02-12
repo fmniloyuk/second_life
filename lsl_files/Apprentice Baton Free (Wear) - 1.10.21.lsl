@@ -410,7 +410,7 @@ initFromType()
     llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro"], batonType));
     
     free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
-        ["action", "Read", "baton_key", llDetectedKey(0)]);
+        ["action", "Read", "baton_key", llGetOwner(), "type","init"]);
 
     boosterm =  "Maestro";
     boosterp =  "Professional";
@@ -898,7 +898,7 @@ default
                     
                     if (batonType == APPRENTICE){
                         llOwnerSay("You have clicked your Baton, please wait and see what your rewards will be...");
-                        free_baton_ebc = doHttpRequest("free_baton_CRU.php", ["action", "Read", "baton_key", llDetectedKey(0)]);
+                        free_baton_ebc = doHttpRequest("free_baton_CRU.php", ["action", "Read", "baton_key", llGetOwner(), "type", "update"]);
                         start("Conducting 1", count);
                     } 
                     else showAnimationMenu(count);                                        
