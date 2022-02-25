@@ -748,7 +748,7 @@ default
                 }
                 else
                 {
-                    if (usageNbTimes+1 < maxNbTimes)    
+                    if (usageNbTimes < maxNbTimes)    
                     {
                         if (llGetUnixTime() - usageStart > DAY)
                         {
