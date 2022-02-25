@@ -145,4 +145,10 @@ If the Music Stand is set to integer timeinterval = 5; then the countdown should
 
 5. I have been testing the Apprentice Free Baton and noted an issue which needs to be solved please. When I detached from player and then selected wear again, the Apprentice Booster amount were reset to 50 when 18 had been used. The Apprentice Baton Free should only give one lot of 50 free Apprentice Energy Boosters. Please see attached .pdf for output.
 
+## 3rd Milestone
 
+1. The Leader board with an overall ranking system and a monthly rank for players.
+2. Free Apprentice Baton
+3. The 3 Energy Boost Kiosks (Apprentice, Professional and Maestro)
+4. Working ATM machine
+5. Testing: Please could you investigate whether the 3 Energy Boost Kiosks and the ATM are working correctly? Hopefully it could be achieved without the need for extra hours – please let me know.
