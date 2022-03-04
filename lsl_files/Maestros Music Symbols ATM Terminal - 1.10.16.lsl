@@ -79,6 +79,7 @@ key updateMoneyReq;
 updateMoney(key avatarKey, float moneyValue)
 {
     debug("updateMoney");
+    llGiveMoney(currentUser, currentBalance);
     updateMoneyReq = doHttpRequest("register_CRU.php", 
         ["action", "UpdateXpAndMoney", 
         "avatar_key", avatarKey, 
