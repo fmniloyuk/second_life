@@ -17,12 +17,12 @@ $avatar_key = GetParam("avatar_key");
 $properties = GetParam("properties");
 if ("Create" == $action)
 {
-$sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
-if ($conn->query($sql) === TRUE) {
-  echo "You have been added to the database!";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
+  $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
+  if ($conn->query($sql) === TRUE) {
+    echo "You have been added to the database!";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 
 }
 
@@ -61,8 +61,34 @@ else if ("Read" == $action)
     // $stmt->close();
 }
 
-else if ("Update" == $action)
+else if ("UpdateXpAndMoney" == $action)
 {
+  if(array_key_exists("amount", $_GET)) {
+        
+    $money = $_GET['amount'];
+    $avatarkey = $_GET['avatar_key'];
+    $avatarname = $_GET['membername'];
+    $total_amount = $_GET['total_amount'];
+    $experience = $_GET['experience'];
+    
+    $present = $_GET['present'];
+    $previous = $_GET['previous'];
+    $sql = "SELECT * FROM register WHERE avatar_key = '".$avatarkey."'";
+    $result = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $totalamount =  $data['amount'] + $money;
+    $totalexperience = $data['experience'] + $experience;
+    //echo $money;
+    if(mysqli_num_rows($result) > 0) {
+        $sql1 = "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
+        //echo "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
+        $result1 = mysqli_query($conn, $sql1);
+        echo 'successfull'.",".$totalamount.",".$totalexperience;
+    }
+    else{
+        echo "Un-registered user...";
+    }
+  }
 }
 else if ("Update" == $action)
 {
