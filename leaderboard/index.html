@@ -129,8 +129,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
-      $(document).ready(function () {
-        var url = "http://178.128.46.187/leaderboard.php";
+      const loadData = (filter, year, month) => {
+        var url = `http://178.128.46.187/leaderboard.php?filter=${filter}&year=${year}&month=${month}`;
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", url, false); // false for synchronous request
         xmlHttp.send(null);
@@ -142,7 +142,11 @@
             "<tr>" +
             "						<td>" +
             '							<div class="d-flex align-items-center">' +
-            '								<img src="img/user0.webp" class="circle-img circle-img--small mr-2" alt="User Img">' +
+            `								<img src=${
+              item?.avatar_picture == "/"
+                ? "img/user0.webp"
+                : item?.avatar_picture
+            } class="circle-img circle-img--small mr-2" alt="User Img">` +
             '								<div class="user-info__basic">' +
             `									<h5 class="mb-0">${item?.avatar_name}</h5>` +
             "								</div>" +
@@ -160,6 +164,11 @@
           table_body = table_body + row;
         });
         document.getElementById("table-body").innerHTML = table_body;
+      };
+      $(document).ready(function () {
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth();
+        loadData("all", year, month + 1);
       });
     </script>
   </body>
