@@ -11,7 +11,7 @@ if ($filter == 'all'){
     $sql = "SELECT leaderboard.avatar_key, profile.avatar_name, profile.avatar_picture, SUM(leaderboard.reward) as reward,SUM(leaderboard.exp) as exp FROM `leaderboard` LEFT JOIN profile ON profile.avatar_key=leaderboard.avatar_key WHERE created_at LIKE '%$year-$month%' GROUP BY avatar_key ORDER BY exp DESC";
 }
 if ($filter == 'top'){
-    $sql = "SELECT leaderboard.avatar_key, profile.avatar_name, profile.avatar_picture, SUM(leaderboard.reward) as reward,SUM(leaderboard.exp) as exp FROM `leaderboard` LEFT JOIN profile ON profile.avatar_key=leaderboard.avatar_key GROUP BY avatar_key ORDER BY exp DESC LIMIT 3";
+    $sql = "SELECT leaderboard.avatar_key, profile.avatar_name, profile.avatar_picture, SUM(leaderboard.reward) as reward,SUM(leaderboard.exp) as exp FROM `leaderboard` LEFT JOIN profile ON profile.avatar_key=leaderboard.avatar_key GROUP BY avatar_key ORDER BY exp DESC";
 }
 
 $result = $conn->query($sql);
