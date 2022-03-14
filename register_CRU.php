@@ -83,7 +83,7 @@ else if ("UpdateXpAndMoney" == $action)
         $sql1 = "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
         //echo "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
         $result1 = mysqli_query($conn, $sql1);
-        echo 'successfull'.",".$totalamount.",".$totalexperience;
+        echo 'UPDATED';
     }
     else{
         echo "Un-registered user...";
