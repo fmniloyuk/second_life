@@ -83,8 +83,8 @@ updateMoney(key avatarKey, float moneyValue)
         ["action", "UpdateXpAndMoney", 
         "avatar_key", avatarKey, 
         "amount", (string) moneyValue, 
-        "experience", "+0", 
-        "total_amount", "+0"]);
+        "experience", 0, 
+        "total_amount", 0]);
 }
 
 default

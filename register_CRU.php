@@ -67,7 +67,6 @@ else if ("UpdateXpAndMoney" == $action)
         
     $money = $_GET['amount'];
     $avatarkey = $_GET['avatar_key'];
-    $avatarname = $_GET['membername'];
     $total_amount = $_GET['total_amount'];
     $experience = $_GET['experience'];
     
@@ -76,12 +75,14 @@ else if ("UpdateXpAndMoney" == $action)
     $sql = "SELECT * FROM register WHERE avatar_key = '".$avatarkey."'";
     $result = mysqli_query($conn, $sql);
     $data = mysqli_fetch_assoc($result);
-    $totalamount =  $data['amount'] + $money;
-    $totalexperience = $data['experience'] + $experience;
+    if($totalamount > 0){
+      $totalamount =  $data['amount'] + $money;
+      $totalexperience = $data['experience'] + $experience;
+    }
     //echo $money;
     if(mysqli_num_rows($result) > 0) {
         $sql1 = "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
-        //echo "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
+        // echo "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
         $result1 = mysqli_query($conn, $sql1);
         echo 'UPDATED';
     }
