@@ -6,7 +6,7 @@ integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
 float currentDBBalance;
-integer currentBalance;
+float currentBalance;
 key withdraw;
 key currentUser = NULL_KEY;
 integer counter = 0;
