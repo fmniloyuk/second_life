@@ -87,6 +87,8 @@ else if ("UpdateXpAndMoney" == $action)
         // echo "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
         $result1 = mysqli_query($conn, $sql1);
         echo 'UPDATED';
+        $sql2 = "INSERT INTO leaderboard(avatar_key,reward,exp) VALUES ('".$avatarkey."',".$money.",".$experience.")";
+        $result2 = mysqli_query($conn, $sql2);
     }
     else{
         echo "Un-registered user...";
