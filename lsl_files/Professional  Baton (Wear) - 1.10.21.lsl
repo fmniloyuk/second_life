@@ -298,6 +298,7 @@ integer getOneMaestroBooster()
     boosterCounterM = boosterCounterM - 1;
     llOwnerSay("you have "+(string)boosterCounterM+" "+boosterm+" booster(s) left");  
     lastTakenBooster = M; 
+    count = boostertimem;
     return boostertimem;     
 }
 
@@ -306,6 +307,7 @@ integer getOneProfessionalBooster()
     boosterCounterP = boosterCounterP - 1;
     llOwnerSay("you have "+(string)boosterCounterP+" "+boosterp+" booster(s) left"); 
     lastTakenBooster = P;   
+    count = boostertimep;
     return boostertimep;     
 }
 
@@ -314,6 +316,7 @@ integer getOneApprenticeBooster()
     boosterCounterA = boosterCounterA - 1;
     llOwnerSay("you have "+(string)boosterCounterA+" "+boostera+" booster(s) left");  
     lastTakenBooster = APPRENTICE;  
+    count = boostertimea;
     return boostertimea;     
 }
 
@@ -339,16 +342,7 @@ start(string animation, integer countValue)
     else if (ebcToUse == "Maestro" && boosterCounterM > 0) count = getOneMaestroBooster();
     else if (ebcToUse == "Professional" && boosterCounterP > 0) count = getOneProfessionalBooster();
     else if (ebcToUse == "Apprentice" && boosterCounterA > 0) count = getOneApprenticeBooster();
-    if (ebcToUse == "Maestro"){
-        lastTakenBooster = M;
-        count = boostertimem;
-    }else if(ebcToUse == "Professional"){
-        lastTakenBooster = P;
-        count = boostertimep;
-    }else if(ebcToUse == "Apprentice"){
-        lastTakenBooster = APPRENTICE;
-        count = boostertimea;
-    }
+    
     currentBooster = lastTakenBooster;
     
     llOwnerSay("You will receive your rewards in "+ (string)count+" Seconds...");
@@ -359,7 +353,7 @@ start(string animation, integer countValue)
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
-    ebcToUse = "Any"; 
+    // ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
         updateProperties();
@@ -925,7 +919,7 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
-            
+            updateProperties();
             stop();
         }
         else

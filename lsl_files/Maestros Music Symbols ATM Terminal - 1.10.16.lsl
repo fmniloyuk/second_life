@@ -171,7 +171,7 @@ state running
                     if (k == "amount") 
                     {
                         currentDBBalance = (float) v;
-                        currentBalance = (integer) v;
+                        currentBalance = (float) v;
                     }
                 }
                 
