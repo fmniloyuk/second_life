@@ -1,4 +1,4 @@
-integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
 // listenDebug();
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
@@ -289,7 +289,7 @@ stop()
 
 string currentAnim;
 string animToPlay;
-string ebcToUse = "Any";
+string ebcToUse = "Apprentice";
 
 integer lastTakenBooster;
 
@@ -298,6 +298,7 @@ integer getOneMaestroBooster()
     boosterCounterM = boosterCounterM - 1;
     llOwnerSay("you have "+(string)boosterCounterM+" "+boosterm+" booster(s) left");  
     lastTakenBooster = M; 
+    count = boostertimem;
     return boostertimem;     
 }
 
@@ -305,7 +306,8 @@ integer getOneProfessionalBooster()
 {
     boosterCounterP = boosterCounterP - 1;
     llOwnerSay("you have "+(string)boosterCounterP+" "+boosterp+" booster(s) left"); 
-    lastTakenBooster = P;   
+    lastTakenBooster = P;
+    count = boostertimep;   
     return boostertimep;     
 }
 
@@ -313,7 +315,8 @@ integer getOneApprenticeBooster()
 {
     boosterCounterA = boosterCounterA - 1;
     llOwnerSay("you have "+(string)boosterCounterA+" "+boostera+" booster(s) left");  
-    lastTakenBooster = APPRENTICE;  
+    lastTakenBooster = APPRENTICE;
+    count = boostertimea;  
     return boostertimea;     
 }
 
@@ -339,7 +342,7 @@ start(string animation, integer countValue)
     else if (ebcToUse == "Maestro" && boosterCounterM > 0) count = getOneMaestroBooster();
     else if (ebcToUse == "Professional" && boosterCounterP > 0) count = getOneProfessionalBooster();
     else if (ebcToUse == "Apprentice" && boosterCounterA > 0) count = getOneApprenticeBooster();
-        
+    
     currentBooster = lastTakenBooster;
     
     llOwnerSay("You will receive your rewards in "+ (string)count+" Seconds...");
@@ -350,7 +353,7 @@ start(string animation, integer countValue)
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
-    ebcToUse = "Any"; 
+    // ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
         updateProperties();
@@ -471,6 +474,7 @@ updateRegisterProperties(key userKey, string properties)
 
 updateProperties()
 {
+    debug(llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
@@ -635,6 +639,7 @@ default
             }
             else if ("FOUND" == ans)
             {
+                debug(resp);
                 integer i;
                 integer size = llGetListLength(resp);
                 string stats = "";
@@ -919,7 +924,7 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
-            
+            updateProperties();
             stop();
         }
         else

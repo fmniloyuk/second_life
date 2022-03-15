@@ -290,7 +290,7 @@ stop()
 
 string currentAnim;
 string animToPlay;
-string ebcToUse = "Any";
+string ebcToUse = "Maestro";
 
 integer lastTakenBooster;
 
@@ -339,7 +339,16 @@ start(string animation, integer countValue)
     else if (ebcToUse == "Maestro" && boosterCounterM > 0) count = getOneMaestroBooster();
     else if (ebcToUse == "Professional" && boosterCounterP > 0) count = getOneProfessionalBooster();
     else if (ebcToUse == "Apprentice" && boosterCounterA > 0) count = getOneApprenticeBooster();
-        
+    if (ebcToUse == "Maestro"){
+        lastTakenBooster = M;
+        count = boostertimem;
+    }else if(ebcToUse == "Professional"){
+        lastTakenBooster = P;
+        count = boostertimep;
+    }else if(ebcToUse == "Apprentice"){
+        lastTakenBooster = APPRENTICE;
+        count = boostertimea;
+    } 
     currentBooster = lastTakenBooster;
     
     llOwnerSay("You will receive your rewards in "+ (string)count+" Seconds...");
@@ -350,7 +359,7 @@ start(string animation, integer countValue)
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
-    ebcToUse = "Any"; 
+    // ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
         updateProperties();

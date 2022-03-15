@@ -289,7 +289,7 @@ stop()
 
 string currentAnim;
 string animToPlay;
-string ebcToUse = "Any";
+string ebcToUse = "Professional";
 
 integer lastTakenBooster;
 
@@ -339,7 +339,16 @@ start(string animation, integer countValue)
     else if (ebcToUse == "Maestro" && boosterCounterM > 0) count = getOneMaestroBooster();
     else if (ebcToUse == "Professional" && boosterCounterP > 0) count = getOneProfessionalBooster();
     else if (ebcToUse == "Apprentice" && boosterCounterA > 0) count = getOneApprenticeBooster();
-        
+    if (ebcToUse == "Maestro"){
+        lastTakenBooster = M;
+        count = boostertimem;
+    }else if(ebcToUse == "Professional"){
+        lastTakenBooster = P;
+        count = boostertimep;
+    }else if(ebcToUse == "Apprentice"){
+        lastTakenBooster = APPRENTICE;
+        count = boostertimea;
+    }
     currentBooster = lastTakenBooster;
     
     llOwnerSay("You will receive your rewards in "+ (string)count+" Seconds...");
