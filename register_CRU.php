@@ -78,9 +78,8 @@ else if ("UpdateXpAndMoney" == $action)
     
     $totalamount =  $data['amount'] + $money;
     $totalexperience = $data['experience'] + $experience;
-    if($total_amount=='+0' && $experience=='+0'){
+    if($total_amount=='+0'){
       $totalamount = $data['amount']-(int)$data['amount'];
-      $totalexperience = 0;
     }
     //echo $money;
     if(mysqli_num_rows($result) > 0) {
