@@ -78,7 +78,10 @@ else if ("UpdateXpAndMoney" == $action)
     
     $totalamount =  $data['amount'] + $money;
     $totalexperience = $data['experience'] + $experience;
-    
+    if($total_amount=='+0' && $experience=='+0'){
+      $totalamount = 0;
+      $totalexperience = 0;
+    }
     //echo $money;
     if(mysqli_num_rows($result) > 0) {
         $sql1 = "update register set amount  = '".$totalamount."', experience  = '".$totalexperience."' WHERE avatar_key = '".$avatarkey."'";
