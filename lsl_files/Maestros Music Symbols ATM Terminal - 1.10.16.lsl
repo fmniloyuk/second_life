@@ -175,7 +175,7 @@ state running
                     }
                 }
                 
-                if (currentBalance <= 1)
+                if (currentBalance < 1)
                 {
                     llRegionSayTo(currentUser,0,"Sorry... You do not have enough balance to withdraw any L$! ");
                     resetUsage();
