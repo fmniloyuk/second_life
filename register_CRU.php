@@ -79,7 +79,7 @@ else if ("UpdateXpAndMoney" == $action)
     $totalamount =  $data['amount'] + $money;
     $totalexperience = $data['experience'] + $experience;
     if($total_amount=='+0' && $experience=='+0'){
-      $totalamount = 0;
+      $totalamount = $data['amount']-(int)$data['amount'];
       $totalexperience = 0;
     }
     //echo $money;

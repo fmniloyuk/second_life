@@ -6,7 +6,7 @@ integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
 float currentDBBalance;
-float currentBalance;
+integer currentBalance;
 key withdraw;
 key currentUser = NULL_KEY;
 integer counter = 0;
@@ -171,7 +171,7 @@ state running
                     if (k == "amount") 
                     {
                         currentDBBalance = (float) v;
-                        currentBalance = (float) v;
+                        currentBalance = (integer) v;
                     }
                 }
                 
