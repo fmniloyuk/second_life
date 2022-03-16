@@ -25,10 +25,10 @@ listenDebug() {
 key buyer = NULL_KEY;
 integer booster = 0;
 integer amount = 0;
-// key mowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
-// key taxowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
-key mowner = "a75f87bd-e09a-4be5-a088-039c9eed1ac9";
-key taxowner = "a75f87bd-e09a-4be5-a088-039c9eed1ac9";
+key mowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
+key taxowner = "ccb679d9-690e-4b6c-a7eb-769712f1d0aa";
+// key mowner = "a75f87bd-e09a-4be5-a088-039c9eed1ac9";
+// key taxowner = "a75f87bd-e09a-4be5-a088-039c9eed1ac9";
 //a75f87bd-e09a-4be5-a088-039c9eed1ac9
 
 integer KIOSK_CHANNEL = 2021091853;
