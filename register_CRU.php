@@ -9,6 +9,18 @@ function echo_error($s) {resp("ERROR: " + $s);}
 function resp($s) {echo($s. "\n");}
 function getProfilePicture($key){
   $html = file_get_contents('http://world.secondlife.com/resident/'.$key);
+  
+  if(strpos($html, 'profile image') !== false){
+    $arr = explode("\n", $html);
+    foreach($arr as $line){
+      if(strpos($line, 'profile image') !== false){
+      echo substr($line,strpos($line,"src=")+5,strpos($line,"class=")-strpos($line,"src=")-7);
+      }
+    }
+  } else{
+      echo "/";
+  }
+
 }
 require_once("config.php");
 
@@ -18,7 +30,7 @@ $action = GetParam("action");
 $avatar_key = GetParam("avatar_key");
 $avatar_name = GetParam("avatar_name");
 $properties = GetParam("properties");
-$avatar_picture = "/";
+$avatar_picture = getProfilePicture($avatar_key);
 if ("Create" == $action)
 {
   $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
