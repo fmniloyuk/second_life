@@ -14,11 +14,11 @@ function getProfilePicture($key){
     $arr = explode("\n", $html);
     foreach($arr as $line){
       if(strpos($line, 'profile image') !== false){
-      echo substr($line,strpos($line,"src=")+5,strpos($line,"class=")-strpos($line,"src=")-7);
+        return substr($line,strpos($line,"src=")+5,strpos($line,"class=")-strpos($line,"src=")-7);
       }
     }
   } else{
-      echo "/";
+      return "/";
   }
 
 }
