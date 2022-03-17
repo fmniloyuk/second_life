@@ -14,7 +14,9 @@ $conn = mysqli_connect($hostname, $username, $password, $database) or die("Datab
 
 $action = GetParam("action");
 $avatar_key = GetParam("avatar_key");
+$avatar_name = GetParam("avatar_name");
 $properties = GetParam("properties");
+$avatar_picture = "/";
 if ("Create" == $action)
 {
   $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
@@ -22,6 +24,12 @@ if ("Create" == $action)
     echo "You have been added to the database!";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $sql = "INSERT INTO profile (avatar_key, avatar_picture, avatar_name) VALUES ('".$avatar_key."','".$avatar_picture."','".$avatar_name."'".")";
+  if ($conn->query($sql) === TRUE) {
+    // echo "You have been added to the database!";
+  } else {
+    // echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
 }
