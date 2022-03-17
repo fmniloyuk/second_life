@@ -38,7 +38,7 @@ if ("Create" == $action)
       if($rowcount==0){
         $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
         if ($conn->query($sql) === TRUE) {
-          echo "You have been added to the database!";
+          echo "CREATED";
         } else {
           echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -46,7 +46,7 @@ if ("Create" == $action)
         $conn->query($sql);
 
       }else{
-        echo "You have been added to the database!";     
+        echo "CREATED";     
       }
     mysqli_free_result($result);
     }else echo_error("During Read");
