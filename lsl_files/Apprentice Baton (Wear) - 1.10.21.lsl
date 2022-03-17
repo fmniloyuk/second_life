@@ -639,7 +639,6 @@ default
             }
             else if ("FOUND" == ans)
             {
-                debug(resp);
                 integer i;
                 integer size = llGetListLength(resp);
                 string stats = "";
