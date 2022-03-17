@@ -56,7 +56,7 @@ if ("Create" == $action)
 else if ("Read" == $action)
 {
     // $sql = "SELECT * FROM register WHERE avatar_key='".$avatar_key."'"; 
-    $sql = "SELECT * FROM `register`,`baton` WHERE register.avatar_key=baton.avatar_key and register.avatar_key='".$avatar_key."'"; 
+    $sql = "SELECT * FROM `register` LEFT JOIN `baton` ON register.avatar_key=baton.avatar_key WHERE register.avatar_key='".$avatar_key."'"; 
     if ($result=mysqli_query($conn,$sql))
     {
       // Return the number of rows in result set
