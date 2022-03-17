@@ -7,7 +7,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 function GetParam($name, $default = "") { return array_key_exists($name, $_GET) ? $_GET[$name]: $default;}
 function echo_error($s) {resp("ERROR: " + $s);}
 function resp($s) {echo($s. "\n");}
-
+function getProfilePicture($key){
+  $html = file_get_contents('http://world.secondlife.com/resident/'.$key);
+}
 require_once("config.php");
 
 $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection error!");
