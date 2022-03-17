@@ -9,7 +9,6 @@ function echo_error($s) {resp("ERROR: " + $s);}
 function resp($s) {echo($s. "\n");}
 function getProfilePicture($key){
   $html = file_get_contents('http://world.secondlife.com/resident/'.$key);
-  
   if(strpos($html, 'profile image') !== false){
     $arr = explode("\n", $html);
     foreach($arr as $line){
@@ -20,7 +19,6 @@ function getProfilePicture($key){
   } else{
       return "/";
   }
-
 }
 require_once("config.php");
 
@@ -33,18 +31,25 @@ $properties = GetParam("properties");
 $avatar_picture = getProfilePicture($avatar_key);
 if ("Create" == $action)
 {
-  $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
-  if ($conn->query($sql) === TRUE) {
-    echo "You have been added to the database!";
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-  $sql = "INSERT INTO profile (avatar_key, avatar_picture, avatar_name) VALUES ('".$avatar_key."','".$avatar_picture."','".$avatar_name."'".")";
-  if ($conn->query($sql) === TRUE) {
-    // echo "You have been added to the database!";
-  } else {
-    // echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+  $sql = "SELECT * FROM register WHERE avatar_key='".$avatar_key."'";
+  if ($result=mysqli_query($conn,$sql))
+    {
+      $rowcount=mysqli_num_rows($result);
+      if($rowcount==0){
+        $sql = "INSERT INTO register (avatar_key, registration_date, amount, experience) VALUES ('".$avatar_key."', '".date("Y-m-d")."',0,0)";
+        if ($conn->query($sql) === TRUE) {
+          echo "You have been added to the database!";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $sql = "INSERT INTO profile (avatar_key, avatar_picture, avatar_name) VALUES ('".$avatar_key."','".$avatar_picture."','".$avatar_name."'".")";
+        $conn->query($sql);
+
+      }else{
+        echo "You have been added to the database!";     
+      }
+    mysqli_free_result($result);
+    }else echo_error("During Read");
 
 }
 
