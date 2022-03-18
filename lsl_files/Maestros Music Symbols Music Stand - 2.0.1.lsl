@@ -243,7 +243,10 @@ default
         {
             list temp = llGetObjectDetails(llList2Key(AttachedUUIDs,i),[OBJECT_NAME]);
             name = llList2String(temp,0);
-            if (contains(name, "*Apprentice*")){
+            if (contains(name, "*Apprentice*")&&(contains(name, "Free"))){
+                baton_type_message = "Wearing Free Apprentice Baton";
+            }
+            else if (contains(name, "*Apprentice*")){
                 baton_type_message = "Wearing Apprentice Baton";
             }
             if (contains(name, "*Professional*")){

@@ -17,6 +17,9 @@ $baton_key  = GetParam("baton_key");
 
 if ($action == "Read")
 {
+    try{
+
+
     $sql = "SELECT * FROM free_baton WHERE baton_key='".$baton_key."'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -37,7 +40,9 @@ if ($action == "Read")
             echo 50;
         }
     }
-
+}catch(Exception $e){
+    echo $e->getMessage();
+}
     mysqli_free_result($result);    
     $stmt->close();
     
