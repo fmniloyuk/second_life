@@ -1,4 +1,4 @@
-integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+integer debugIsOn = TRUE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
 // listenDebug();
 // if (SCRIPT_DEBUG_CHANNEL == ch) manageDebug(message);
 
@@ -312,7 +312,7 @@ integer getOneProfessionalBooster()
 integer getOneApprenticeBooster()
 {
     boosterCounterA = boosterCounterA - 1;
-    llOwnerSay("you have "+(string)boosterCounterA+" "+boostera+" booster(s) left");  
+    llOwnerSay("you have "+(string)boosterCounterA+" Free "+boostera+" booster(s) left");  
     lastTakenBooster = APPRENTICE;  
     return boostertimea;     
 }
@@ -409,9 +409,6 @@ initFromType()
     
     llOwnerSay("Baton's type : " + llList2String(["None", "Apprentice", "Professional", "Maestro"], batonType));
     
-    free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
-        ["action", "Read", "baton_key", llGetOwner(), "type","init"]);
-
     boosterm =  "Maestro";
     boosterp =  "Professional";
     boostera =  "Apprentice";
@@ -599,6 +596,9 @@ baton_touched(integer source){
         
     else if (llGetAttached() != 0)
         llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
+    
+    free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
+        ["action", "Read", "baton_key", llGetOwner(), "type","update"]);
 }
 
 key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
@@ -679,6 +679,8 @@ default
         if (free_baton_ebc == request_id) {
             list resp = llParseString2List(body, ["\n"], []);
             boosterCounterA = (integer)llList2String(resp, 0);
+            start("Conducting 1", count);
+
         }
         if (createRegisterReq == request_id)
         {
@@ -886,7 +888,7 @@ default
                 else if ("searchb" == cmd)
                 {
                     standId = id;
-                    debug("Wearing Apprentice Baton");
+                    debug("Wearing Free Apprentice Baton");
                     // findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
                 }
                 else if ("timestart" == cmd && standId == id)
@@ -899,7 +901,6 @@ default
                     if (batonType == APPRENTICE){
                         llOwnerSay("You have clicked your Baton, please wait and see what your rewards will be...");
                         free_baton_ebc = doHttpRequest("free_baton_CRU.php", ["action", "Read", "baton_key", llGetOwner(), "type", "update"]);
-                        start("Conducting 1", count);
                     } 
                     else showAnimationMenu(count);                                        
                 }

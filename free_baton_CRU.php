@@ -26,12 +26,12 @@ if ($action == "Read")
         // output data of each row
         $row = $result->fetch_assoc();
         $ebc = $row['ebc'];
+        echo $ebc;
         if ($type == 'update'){
             $ebc = $row['ebc'] - 1;
         }
         if ($ebc<0)
             $ebc = 0;
-        echo $ebc;
         $sql = "UPDATE free_baton SET ebc=".$ebc." WHERE baton_key='".$baton_key."'";
         $conn->query($sql);
     } else {
