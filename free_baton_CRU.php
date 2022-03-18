@@ -44,7 +44,7 @@ if ($action == "Read")
     echo $e->getMessage();
 }
     mysqli_free_result($result);    
-    $stmt->close();
+    // $stmt->close();
     
 }
 
