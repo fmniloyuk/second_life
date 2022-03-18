@@ -682,7 +682,7 @@ default
             
             if ("CREATED" == ans)
             {
-                llOwnerSay("You just registered. We whish you a great experience !!!");
+                llOwnerSay("You just registered. We wish you a great experience !!!");
                 
                 findRegister(llGetOwner(), INITIAL);   
             }    

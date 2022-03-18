@@ -597,8 +597,8 @@ baton_touched(integer source){
     else if (llGetAttached() != 0)
         llRegionSay(BATON_REPLY_CHANNEL,"findstand"+","+(string)llGetOwner());
     
-    free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
-        ["action", "Read", "baton_key", llGetOwner(), "type","update"]);
+    // free_baton_ebc = doHttpRequest("free_baton_CRU.php", 
+    //     ["action", "Read", "baton_key", llGetOwner(), "type","update"]);
 }
 
 key currentParcel() { return llList2Key(llGetParcelDetails(llGetPos(), [PARCEL_DETAILS_ID]), 0); }
@@ -689,7 +689,7 @@ default
             
             if ("CREATED" == ans)
             {
-                llOwnerSay("You just registered. We whish you a great experience !!!");
+                llOwnerSay("You just registered. We wish you a great experience !!!");
                 
                 findRegister(llGetOwner(), INITIAL);   
             }    
