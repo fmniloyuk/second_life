@@ -73,7 +73,7 @@
             "						<td>" +
             `								<h6 class="mr-1">${item?.exp}</h6>` +
             "						</td>" +
-            `						<td><h6>${item?.reward}</h6></td>` +
+            `						<td><h6>${Number(item?.reward).toFixed(2)}</h6></td>` +
             "					</tr>" +
             "";
           table_body = table_body + row;
