@@ -335,7 +335,7 @@ default
             }
                                                                                    
             permissions = TRUE;
-           
+            init();
         }
         else 
         {
@@ -414,6 +414,7 @@ default
                 // llSetPayPrice( integer price, list quick_pay_buttons );
                 // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
+
             }
             else  if(message == "Auto refill"){
                 if(autorefill == 0)
@@ -741,14 +742,14 @@ default
                 }
                 
                 if (!permissions) requestPermissions();                
-                else init();
+                // else init();
             }
         }
         
         if (createStandReq == request_id)
         {
             llOwnerSay("This stand has been registered.");
-            init();
+            // init();
         }
         
         if (updateMoneyAndSurl == request_id)
