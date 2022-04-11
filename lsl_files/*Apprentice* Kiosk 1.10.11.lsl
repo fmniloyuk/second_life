@@ -7,13 +7,13 @@ integer SCRIPT_DEBUG_CHANNEL = -20210000;
 
 listenDebug() { 
     llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); 
-    llSay(SCRIPT_DEBUG_CHANNEL, "??");
+    // llSay(SCRIPT_DEBUG_CHANNEL, "??");
     } 
     
     manageDebug(string cmd) 
     { if (cmd != "??") 
         debugIsOn = (cmd == "DEBUG_ON"); 
-        llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); 
+        // llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); 
     } 
     
     debug(string s) { 
