@@ -1,6 +1,6 @@
 <?php    
 
-$hostname = "localhost";
-$username = "admin";
-$password = "london2022#SL";
-$database = "bhicxumy";
+$hostname = "us-cdbr-east-05.cleardb.net";
+$username = "bef7bb22d1af3e";
+$password = "b5487f83";
+$database = "heroku_91ce1fbdac7c0c2";
