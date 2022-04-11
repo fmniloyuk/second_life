@@ -40,7 +40,7 @@ key standId = NULL_KEY;
 integer timestarted = 0;  
 integer totalplay = 0;
 
-string url = "http://178.128.46.187/";
+string url = "https://thesecondlife.herokuapp.com/";
 
 key rezreq;
 
