@@ -1,0 +1,23 @@
+{
+    "name": "faisalmahmud/second_life",
+    "description": "API for LSL objects",
+    "require-dev": {
+        "php": "7.4"
+    },
+    "license": "GNU",
+    "autoload": {
+        "psr-4": {
+            "Faisalmahmud\\SecondLife\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Faisal Niloy",
+            "email": "fmniloy2016@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "php": "7.4"
+    }
+}
