@@ -1,7 +1,28 @@
 
-string url = "http://178.128.46.187/";
+string url = "https://thesecondlife.herokuapp.com/";
 
-// integer debugIsOn = FALSE; integer SCRIPT_DEBUG_CHANNEL = -20210000; listenDebug() { llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); llSay(SCRIPT_DEBUG_CHANNEL, "??");} manageDebug(string cmd) { if (cmd != "??") debugIsOn = (cmd == "DEBUG_ON"); llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); } debug(string s) { if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); }
+// Debug starts 
+integer debugIsOn = FALSE; 
+integer SCRIPT_DEBUG_CHANNEL = -20210000; 
+
+listenDebug() { 
+    llListen(SCRIPT_DEBUG_CHANNEL, "", NULL_KEY, ""); 
+    // llSay(SCRIPT_DEBUG_CHANNEL, "??");
+    } 
+    
+    manageDebug(string cmd) 
+    { if (cmd != "??") 
+        debugIsOn = (cmd == "DEBUG_ON"); 
+        // llWhisper(0, "DEBUG [" + llList2String(["OFF", "ON"], debugIsOn) + "]"); 
+    } 
+    
+    debug(string s) { 
+        if (debugIsOn) llSay(0, "--------------- DEBUG:" + s); 
+    }
+// Debug ends
+
+
+
 integer contains(string source, string tag) { return llSubStringIndex(source, tag) != -1; }
 key doHttpRequest(string php, list params)
 {
@@ -335,7 +356,7 @@ default
             }
                                                                                    
             permissions = TRUE;
-           
+            init();
         }
         else 
         {
@@ -414,6 +435,7 @@ default
                 // llSetPayPrice( integer price, list quick_pay_buttons );
                 // Suggest default amounts for the pay text field and pay buttons of the appearing dialog when someone chooses to pay this object.
                 llSetPayPrice(200, [200 ,500, 1000, 2000]);
+
             }
             else  if(message == "Auto refill"){
                 if(autorefill == 0)
@@ -741,14 +763,14 @@ default
                 }
                 
                 if (!permissions) requestPermissions();                
-                else init();
+                // else init();
             }
         }
         
         if (createStandReq == request_id)
         {
             llOwnerSay("This stand has been registered.");
-            init();
+            // init();
         }
         
         if (updateMoneyAndSurl == request_id)

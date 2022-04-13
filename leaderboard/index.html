@@ -20,9 +20,9 @@
   </head>
   <body>
     <section class="main-content" style="text-align:center;">
-      <a href="http://178.128.46.187/leaderboard/all_users.html">All Users</a>
+      <a href="https://thesecondlife.herokuapp.com/leaderboard/all_users.html">All Users</a>
     </br>
-      <a href="http://178.128.46.187/leaderboard/month_users.html">Monthly Users</a>
+      <a href="https://thesecondlife.herokuapp.com/leaderboard/month_users.html">Monthly Users</a>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -30,7 +30,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
       const loadData = (filter, year, month) => {
-        var url = `http://178.128.46.187/leaderboard.php?filter=${filter}&year=${year}&month=${month}`;
+        var url = `https://thesecondlife.herokuapp.com/leaderboard.php?filter=${filter}&year=${year}&month=${month}`;
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", url, false); // false for synchronous request
         xmlHttp.send(null);
