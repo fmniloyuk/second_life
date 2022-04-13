@@ -22,6 +22,7 @@ listenDebug() {
 // Debug ends
 
 
+
 key buyer = NULL_KEY;
 integer booster = 0;
 integer amount = 0;

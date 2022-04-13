@@ -1,5 +1,6 @@
 string url = "https://thesecondlife.herokuapp.com/";
  
+
 // Debug starts 
 integer debugIsOn = FALSE; 
 integer SCRIPT_DEBUG_CHANNEL = -20210000; 

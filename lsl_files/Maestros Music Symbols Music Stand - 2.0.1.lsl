@@ -22,6 +22,7 @@ listenDebug() {
 // Debug ends
 
 
+
 integer contains(string source, string tag) { return llSubStringIndex(source, tag) != -1; }
 key doHttpRequest(string php, list params)
 {
