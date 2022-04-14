@@ -240,7 +240,7 @@ default
     state_entry() 
     {
         availableMoney = 0;
-        isBusy = TRUE;
+        // isBusy = TRUE;
         
         llListen(BATON_REPLY_CHANNEL,"", NULL_KEY,"");
         llListen(VOTE_TO_STAND_CHANNEL,"", NULL_KEY,""); 
@@ -325,7 +325,7 @@ default
                 else{
                     llSetTimerEvent(5);
                     player = llDetectedKey(0);
-                    isBusy = TRUE;
+                    // isBusy = TRUE;
                     llRegionSay(BATON_CHANNEL,"searchb"+","+(string)llDetectedKey(0));
                 }
             }
@@ -585,7 +585,7 @@ default
                         // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
-                        isBusy = TRUE;
+                        // isBusy = TRUE;
                         llRegionSay(BATON_CHANNEL,"searchb"+","+(string)batonPlayer);
                     }
                 }
