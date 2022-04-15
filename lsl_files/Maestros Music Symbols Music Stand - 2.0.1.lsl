@@ -311,7 +311,7 @@ default
        {           
             if (availableMoney <= 0)
             {
-                llRegionSayTo(llDetectedKey(0),0,"Sorry there is not enough funds in this Music Stand, please locate another one….");
+                llRegionSayTo(llDetectedKey(0),0,"Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand...");
                  llSleep(1);
             }
             else

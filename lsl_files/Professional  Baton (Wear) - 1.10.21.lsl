@@ -463,7 +463,7 @@ key findRegisterReq;
 findRegister(key avatarKey, integer reason)
 {
     debug("findRegister");
-    actionText("Checking your account...");
+    // actionText("Checking your account...");
     findingRegisterReason = reason;
     findRegisterReq = doHttpRequest("register_CRU.php", ["action", "Read", "avatar_key", avatarKey]);
 }
@@ -486,7 +486,7 @@ key updateRegisterPropertiesReq;
 updateRegisterProperties(key userKey, string properties)
 {
     debug("updateProperties");
-    actionText("Updating...");
+    // actionText("Updating...");
     updateRegisterPropertiesReq = doHttpRequest("register_CRU.php", 
         ["action", "UpdateProperties", "avatar_key", userKey, "properties", properties]);
 }
@@ -586,7 +586,7 @@ baton_touched(integer source){
     }
 
     if(standId == NULL_KEY){
-        llRegionSayTo(batonPlayer, 0, "Please click on the music stand");
+        llRegionSayTo(batonPlayer, 0, "Please click Music Stand to begin play....");
         return;
     }
     key id = llDetectedKey(0);
@@ -888,7 +888,7 @@ default
             else if (llList2String(temp,1) == llGetOwner())
             {
                 if ("outofdist" == cmd)
-                     llOwnerSay("You should be within 30 meter range");
+                     llOwnerSay("Sorry you are too far from any Music Stand – please move closer to the Music Stand");
                 
                 else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
                      llOwnerSay("Music stand is out of fund...");
