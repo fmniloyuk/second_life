@@ -294,8 +294,6 @@ init()
     
     initFromType();
     findRegister(llGetOwner(), INITIAL);
-    updateProperties();
-    findRegister(llGetOwner(), INITIAL);
     llOwnerSay(llGetOwner());
 }
 
