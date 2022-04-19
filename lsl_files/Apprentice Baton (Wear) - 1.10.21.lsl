@@ -293,7 +293,7 @@ init()
     llRequestPermissions(llGetOwner(), PERMISSION_TRIGGER_ANIMATION);
     
     initFromType();
-    
+    updateProperties();
     findRegister(llGetOwner(), INITIAL);
 }
 
