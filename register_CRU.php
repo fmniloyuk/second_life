@@ -136,6 +136,7 @@ else if ("UpdateProperties" == $action)
       
       //counting existing records
       if($rowcount==0){
+        $properties = '50,0,0';
         //inserting if no records found
         $sql = "INSERT INTO baton (avatar_key, properties) VALUES 
         ('".$avatar_key."', '".$properties."')";
