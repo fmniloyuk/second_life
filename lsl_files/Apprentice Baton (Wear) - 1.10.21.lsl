@@ -308,7 +308,7 @@ stop()
 
 string currentAnim;
 string animToPlay;
-string ebcToUse = "Apprentice";
+string ebcToUse = "Any";
 
 integer lastTakenBooster;
 
