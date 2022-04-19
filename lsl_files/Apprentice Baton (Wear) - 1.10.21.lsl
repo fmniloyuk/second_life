@@ -372,7 +372,7 @@ start(string animation, integer countValue)
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
-    // ebcToUse = "Any"; 
+    ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
         updateProperties();
