@@ -762,7 +762,7 @@ default
                 }
                 else
                 {
-                    if (usageNbTimes+1 < maxNbTimes)    
+                    if (usageNbTimes < maxNbTimes)    
                     {
                         if (llGetUnixTime() - usageStart > DAY)
                         {
@@ -944,6 +944,17 @@ default
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             updateProperties();
             stop();
+            if (usageNbTimes+1 > maxNbTimes){
+                integer lastTime = llGetUnixTime();
+                timeleft = lastTime + 86400;
+                gmt = (integer)llGetGMTclock() - (llGetUnixTime() - lastTime);
+                flag = 1;
+                timercount =  lastTime+ 86400;
+                llOwnerSay("Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt));
+                llRegionSayTo(standId,BATON_REPLY_CHANNEL,"maxreached"+","+(string)llGetOwner()+","+""); 
+                llOwnerSay("Time remaining: "+ConvertWallclockToTime((timercount - llGetUnixTime())));
+                allowed_conduct_reason = "Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt);
+            }
         }
         else
         {
