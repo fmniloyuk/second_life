@@ -1,5 +1,5 @@
 
-string url = "https://thesecondlife.herokuapp.com";
+string url = "https://thesecondlife.herokuapp.com/";
 
 // Debug starts 
 integer debugIsOn = FALSE; 
