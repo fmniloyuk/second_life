@@ -601,7 +601,7 @@ default
             {
                  vector mypos = llGetPos();
                  list pos = llGetObjectDetails(id,[OBJECT_POS]);
-                 if (llVecDist(mypos,(vector)llList2String(pos,0)) > 30)
+                 if (llVecDist(mypos,(vector)llList2String(pos,0)) > 10)
                  {
                       llRegionSayTo(id,BATON_CHANNEL,"outofdist"+","+(string)player);
                  }
