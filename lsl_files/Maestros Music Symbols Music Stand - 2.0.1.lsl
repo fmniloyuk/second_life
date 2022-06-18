@@ -593,8 +593,8 @@ default
             }
             else if (llList2String(temp,0)  == "ihave" && availableMoney < minimumamount)
             {
-                llRegionSayTo(id,BATON_CHANNEL,"outoffund"+","+(string)llList2String(temp,1));
-                // if(autorefill == 1)
+                llRegionSayTo(id,BATON_CHANNEL,"outoffund"+","+(string)player);
+                if(autorefill == 1)
                 llInstantMessage(llGetOwner(),"Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
             }
             else if (llList2String(temp,0)  == "ihave" && availableMoney >= minimumamount)
