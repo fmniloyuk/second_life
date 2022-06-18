@@ -892,8 +892,8 @@ default
                 if ("outofdist" == cmd)
                      llOwnerSay("Sorry you are too far from any Music Stand – please move closer to the Music Stand");
                 
-                else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
-                     llOwnerSay("Music stand is out of fund...");
+                else  if ("outoffund" == cmd  && count == 0  && standId == id)
+                     llOwnerSay("Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
                 
                 else if ("searchb" == cmd)
                 {
