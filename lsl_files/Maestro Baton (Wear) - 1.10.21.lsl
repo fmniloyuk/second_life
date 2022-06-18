@@ -493,7 +493,7 @@ updateRegisterProperties(key userKey, string properties)
 
 updateProperties()
 {
-   updateRegisterProperties(llGetOwner(), llList2CSV([0,0,-1]));    
+    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 
 noText() {
@@ -943,6 +943,7 @@ default
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             stop();
+            findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
         }
         else
         {

@@ -493,7 +493,7 @@ updateRegisterProperties(key userKey, string properties)
 
 updateProperties()
 {
-   updateRegisterProperties(llGetOwner(), llList2CSV([-1,0,0]));    
+   updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
 noText() { llSetText("", <1,1,1>, 1); }
   
@@ -941,6 +941,7 @@ default
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             stop();
+            findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
             if (usageNbTimes+1 > maxNbTimes){
                 integer lastTime = llGetUnixTime();
                 timeleft = lastTime + 86400;

@@ -149,17 +149,17 @@ else if ("UpdateProperties" == $action)
           echo "Error: " . $sql . "<br>" . $conn->error;
         }
       }else{
-        $data = mysqli_fetch_assoc($result);
-        $p = explode(',', $data['properties']);
-        if ($properties == "-1,0,0") {
-          $properties = str((int)$p[0] - 1) . ',' . $p[1] . ',' . $p[2];
-        }
-        if ($properties == "0,-1,0") {
-          $properties = $p[0] . ',' . str((int)$p[1] - 1) . ',' . $p[2];
-        }
-        if ($properties == "0,0,-1") {
-          $properties = $p[0] . ',' . $p[1] . ',' . str((int)$p[2] - 1);
-        }
+        // $data = mysqli_fetch_assoc($result);
+        // $p = explode(',', $data['properties']);
+        // if ($properties == "-1,0,0") {
+        //   $properties = str((int)$p[0] - 1) . ',' . $p[1] . ',' . $p[2];
+        // }
+        // if ($properties == "0,-1,0") {
+        //   $properties = $p[0] . ',' . str((int)$p[1] - 1) . ',' . $p[2];
+        // }
+        // if ($properties == "0,0,-1") {
+        //   $properties = $p[0] . ',' . $p[1] . ',' . str((int)$p[2] - 1);
+        // }
 
         //updating exsisting record
         $sql = "UPDATE baton SET properties='".$properties."' WHERE avatar_key='".$avatar_key."'";
