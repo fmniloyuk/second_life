@@ -150,7 +150,6 @@ else if ("UpdateProperties" == $action)
         }
       }else{
         $data = mysqli_fetch_assoc($result);
-        $properties = $data['properties'];
         $p = explode(',', $data['properties']);
         if ($properties == "-1,0,0") {
           $properties = str((int)$p[0] - 1) . ',' . $p[1] . ',' . $p[2];
@@ -161,6 +160,7 @@ else if ("UpdateProperties" == $action)
         if ($properties == "0,0,-1") {
           $properties = $p[0] . ',' . $p[1] . ',' . str((int)$p[2] - 1);
         }
+
         //updating exsisting record
         $sql = "UPDATE baton SET properties='".$properties."' WHERE avatar_key='".$avatar_key."'";
         if ($conn->query($sql) === TRUE) {
