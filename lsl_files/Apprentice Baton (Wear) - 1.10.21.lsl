@@ -375,7 +375,7 @@ start(string animation, integer countValue)
     ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
-        updateProperties();
+        updatePropertiesStart();
 }
 
 list animations = ["Conducting 1", "Conducting 2", "Jazz conductor"];
@@ -491,12 +491,14 @@ updateRegisterProperties(key userKey, string properties)
         ["action", "UpdateProperties", "avatar_key", userKey, "properties", properties]);
 }
 
-updateProperties()
+updatePropertiesStart()
 {
-    debug(llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));
-   updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
+   updateRegisterProperties(llGetOwner(), llList2CSV([0,0,0]));    
 }
-
+updatePropertiesStop()
+{
+   updateRegisterProperties(llGetOwner(), llList2CSV([-1,0,0]));    
+}
 noText() { llSetText("", <1,1,1>, 1); }
   
 startIfAllowed(integer allowed, integer lastTime, string reason)
@@ -942,7 +944,7 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
-            updateProperties();
+            updatePropertiesStop();
             stop();
             if (usageNbTimes+1 > maxNbTimes){
                 integer lastTime = llGetUnixTime();
