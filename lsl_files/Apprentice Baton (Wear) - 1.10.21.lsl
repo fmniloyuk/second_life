@@ -375,7 +375,7 @@ start(string animation, integer countValue)
     ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
-        updatePropertiesStart();
+        updateProperties();
 }
 
 list animations = ["Conducting 1", "Conducting 2", "Jazz conductor"];
@@ -491,11 +491,7 @@ updateRegisterProperties(key userKey, string properties)
         ["action", "UpdateProperties", "avatar_key", userKey, "properties", properties]);
 }
 
-updatePropertiesStart()
-{
-   updateRegisterProperties(llGetOwner(), llList2CSV([0,0,0]));    
-}
-updatePropertiesStop()
+updateProperties()
 {
    updateRegisterProperties(llGetOwner(), llList2CSV([-1,0,0]));    
 }
@@ -944,7 +940,6 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
-            updatePropertiesStop();
             stop();
             if (usageNbTimes+1 > maxNbTimes){
                 integer lastTime = llGetUnixTime();
