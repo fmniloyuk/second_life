@@ -941,7 +941,7 @@ default
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
             stop();
-            findRegister(llGetOwner(), CHECK_BEFORE_CONDUCT);
+            findRegister(llGetOwner(), INITIAL);
             if (usageNbTimes+1 > maxNbTimes){
                 integer lastTime = llGetUnixTime();
                 timeleft = lastTime + 86400;
