@@ -44,7 +44,7 @@ if ("Create" == $action)
         }
         $sql = "INSERT INTO profile (avatar_key, avatar_picture, avatar_name) VALUES ('".$avatar_key."','".$avatar_picture."','".$avatar_name."'".")";
         $conn->query($sql);
-        $properties='50,0,0';
+        $properties='20,0,0';
         $sql = "INSERT INTO baton (avatar_key, properties) VALUES 
         ('".$avatar_key."', '".$properties."')";
         $conn->query($sql);
@@ -141,7 +141,7 @@ else if ("UpdateProperties" == $action)
       if($rowcount==0){
         //inserting if no records found
         $sql = "INSERT INTO baton (avatar_key, properties) VALUES 
-        ('".$avatar_key."', '50,0,0')";
+        ('".$avatar_key."', '20,0,0')";
         
         if ($conn->query($sql) === TRUE) {
           echo "Baton has been updated";
