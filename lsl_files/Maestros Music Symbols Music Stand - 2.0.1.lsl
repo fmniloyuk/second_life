@@ -175,7 +175,7 @@ hover()
 {
     llSetText(standname+" \n Level One \n x"+
         (string)Multiplier+" payout \n"
-        +" and \n Music Stand has "+(string)availableMoney+" L$",<1,1,1>,1);
+        +" and \n Music Stand has "+(string)availableMoney+" L$\nPlease click Music Stand to begin....",<1,1,1>,1);
     llSetObjectDesc((string)availableMoney);            
 }
 
@@ -240,7 +240,7 @@ default
     state_entry() 
     {
         availableMoney = 0;
-        isBusy = TRUE;
+        // isBusy = TRUE;
         
         llListen(BATON_REPLY_CHANNEL,"", NULL_KEY,"");
         llListen(VOTE_TO_STAND_CHANNEL,"", NULL_KEY,""); 
@@ -311,7 +311,7 @@ default
        {           
             if (availableMoney <= 0)
             {
-                llRegionSayTo(llDetectedKey(0),0,"Sorry there is not enough funds in this Music Stand, please locate another one….");
+                llRegionSayTo(llDetectedKey(0),0,"Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
                  llSleep(1);
             }
             else
@@ -325,7 +325,7 @@ default
                 else{
                     llSetTimerEvent(5);
                     player = llDetectedKey(0);
-                    isBusy = TRUE;
+                    // isBusy = TRUE;
                     llRegionSay(BATON_CHANNEL,"searchb"+","+(string)llDetectedKey(0));
                 }
             }
@@ -572,7 +572,7 @@ default
                 key batonPlayer = llList2String(temp,1);
                 
                 if (availableMoney <= 0)
-                    llRegionSayTo(batonPlayer, 0, "Sorry there is not enough funds in this Music Stand, please locate another one….");
+                    llRegionSayTo(batonPlayer, 0, "Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
                 else
                 {
                     if (isBusy)
@@ -585,7 +585,7 @@ default
                         // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
                         llSetTimerEvent(5);
                         player = batonPlayer;
-                        isBusy = TRUE;
+                        // isBusy = TRUE;
                         llRegionSay(BATON_CHANNEL,"searchb"+","+(string)batonPlayer);
                     }
                 }
@@ -593,15 +593,15 @@ default
             }
             else if (llList2String(temp,0)  == "ihave" && availableMoney < minimumamount)
             {
-                llRegionSayTo(id,BATON_CHANNEL,"outoffund"+","+(string)llList2String(temp,1));
+                llRegionSayTo(id,BATON_CHANNEL,"outoffund"+","+(string)player);
                 if(autorefill == 1)
-                    llInstantMessage(llGetOwner(),"Sorry there is not enough funds in this Music Stand, please locate another one….");
+                llInstantMessage(llGetOwner(),"Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
             }
             else if (llList2String(temp,0)  == "ihave" && availableMoney >= minimumamount)
             {
                  vector mypos = llGetPos();
                  list pos = llGetObjectDetails(id,[OBJECT_POS]);
-                 if (llVecDist(mypos,(vector)llList2String(pos,0)) > 30)
+                 if (llVecDist(mypos,(vector)llList2String(pos,0)) > 10)
                  {
                       llRegionSayTo(id,BATON_CHANNEL,"outofdist"+","+(string)player);
                  }

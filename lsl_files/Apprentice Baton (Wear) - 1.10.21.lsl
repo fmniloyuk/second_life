@@ -308,7 +308,7 @@ stop()
 
 string currentAnim;
 string animToPlay;
-string ebcToUse = "Apprentice";
+string ebcToUse = "Any";
 
 integer lastTakenBooster;
 
@@ -372,7 +372,7 @@ start(string animation, integer countValue)
     // Cause the timer event to be triggered a maximum of once every sec seconds. Passing in 0.0 stops further timer events.
     llSetTimerEvent(1);
     
-    // ebcToUse = "Any"; 
+    ebcToUse = "Any"; 
     
     if (prev != boosterCounterA + boosterCounterP + boosterCounterM)
         updateProperties();
@@ -463,7 +463,7 @@ key findRegisterReq;
 findRegister(key avatarKey, integer reason)
 {
     debug("findRegister");
-    actionText("Checking your account...");
+    // actionText("Checking your account...");
     findingRegisterReason = reason;
     findRegisterReq = doHttpRequest("register_CRU.php", ["action", "Read", "avatar_key", avatarKey]);
 }
@@ -486,17 +486,15 @@ key updateRegisterPropertiesReq;
 updateRegisterProperties(key userKey, string properties)
 {
     debug("updateProperties");
-    actionText("Updating...");
+    // actionText("Updating...");
     updateRegisterPropertiesReq = doHttpRequest("register_CRU.php", 
         ["action", "UpdateProperties", "avatar_key", userKey, "properties", properties]);
 }
 
 updateProperties()
 {
-    debug(llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));
    updateRegisterProperties(llGetOwner(), llList2CSV([boosterCounterA,boosterCounterP,boosterCounterM]));    
 }
-
 noText() { llSetText("", <1,1,1>, 1); }
   
 startIfAllowed(integer allowed, integer lastTime, string reason)
@@ -588,7 +586,7 @@ baton_touched(integer source){
     }
     
     if(standId == NULL_KEY){
-        llRegionSayTo(batonPlayer, 0, "Please click on the music stand");
+        llRegionSayTo(batonPlayer, 0, "Please click Music Stand to begin play....");
         return;
     }
     key id = llDetectedKey(0);
@@ -762,7 +760,7 @@ default
                 }
                 else
                 {
-                    if (usageNbTimes+1 < maxNbTimes)    
+                    if (usageNbTimes < maxNbTimes)    
                     {
                         if (llGetUnixTime() - usageStart > DAY)
                         {
@@ -892,10 +890,10 @@ default
             else if (llList2String(temp,1) == llGetOwner())
             {
                 if ("outofdist" == cmd)
-                     llOwnerSay("You should be within 30 meter range");
+                     llOwnerSay("Sorry you are too far from any Music Stand – please move closer to the Music Stand");
                 
-                else  if ("outoffund" == cmd  && count == 0  && standId == NULL_KEY)
-                     llOwnerSay("Music stand is out of fund...");
+                else  if ("outoffund" == cmd  && count == 0  && standId == id)
+                     llOwnerSay("Sorry there are not enough funds to continue to give rewards at this Music Stand, please locate another Music Stand by clicking New on HUD to visit our web page ..");
                 
                 else if ("searchb" == cmd)
                 {
@@ -942,8 +940,19 @@ default
             llMessageLinked(LINK_THIS,4444444,(string)standId+","+"1,"+(string)timestarted,""); 
             llRegionSayTo(standId,BATON_REPLY_CHANNEL,"FinishedCounter"+","+(string)llGetOwner()+","+(string) XPImprovment);
             llMessageLinked(LINK_THIS,23729,"stop",""); 
-            updateProperties();
             stop();
+            findRegister(llGetOwner(), INITIAL);
+            if (usageNbTimes+1 > maxNbTimes){
+                integer lastTime = llGetUnixTime();
+                timeleft = lastTime + 86400;
+                gmt = (integer)llGetGMTclock() - (llGetUnixTime() - lastTime);
+                flag = 1;
+                timercount =  lastTime+ 86400;
+                llOwnerSay("Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt));
+                llRegionSayTo(standId,BATON_REPLY_CHANNEL,"maxreached"+","+(string)llGetOwner()+","+""); 
+                llOwnerSay("Time remaining: "+ConvertWallclockToTime((timercount - llGetUnixTime())));
+                allowed_conduct_reason = "Sorry, you have achieved your maximum today, you can return On "+(string)DateString(Unix2DateTime(timeleft))+ " "+ fStrGMTwOffset( -7 ,gmt);
+            }
         }
         else
         {
